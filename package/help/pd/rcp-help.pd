@@ -22,11 +22,11 @@ parameters exposed from Pd.;
 #X text 74 398 RabbitControl utilities;
 #X obj 125 665 ws.server;
 #X obj 231 665 ws.client;
-#X msg 55 208 https://github.com/rabbitcontrol/rcp-flext;
 #X text 14 726 written by Ingo Randolf \, 2021;
 #X text 74 528 Packet framing utilities;
 #X text 54 186 please find the source-code of the Pd externals here:
 ;
+#X msg 55 208 browse https://github.com/rabbitcontrol/rcp-flext;
 #X connect 10 0 9 0;
 #X connect 11 0 9 0;
-#X connect 21 0 9 0;
+#X connect 24 0 9 0;
