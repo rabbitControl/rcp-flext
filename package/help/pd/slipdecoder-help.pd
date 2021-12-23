@@ -1,0 +1,17 @@
+#N canvas 130 169 458 343 12;
+#X obj 65 168 slipencoder;
+#X msg 65 130 1 2 3 192;
+#X obj 236 186 slipdecoder;
+#X obj 236 208 print decoded;
+#X obj 65 194 print slip;
+#X text 14 9 RabbitControl for Pd - slipdecoder;
+#X obj 47 49 slipdecoder;
+#X text 136 49 - slipdecoder;
+#X text 47 293 see also:;
+#X obj 125 292 slipencoder;
+#X text 47 83 Decodes a slip-packet from a list of bytes (RFC 1055)
+;
+#X connect 0 0 2 0;
+#X connect 0 0 4 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;

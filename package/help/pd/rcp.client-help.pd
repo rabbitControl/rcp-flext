@@ -1,0 +1,68 @@
+#N canvas 117 54 814 917 12;
+#X obj 67 519 rcp.client;
+#X obj 67 170 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 101 220 close;
+#X obj 67 634 route list;
+#X obj 67 658 route add update remove;
+#X floatatom 254 446 5 0 0 0 - - -;
+#X obj 187 334 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 134 261 info sensor1;
+#X text 65 798 <group-label-list> <value>;
+#X text 376 605 id <group-label-list> <id>;
+#X text 376 565 min <group-label-list> <min>;
+#X text 376 585 max <group-label-list> <max>;
+#X text 376 625 value <group-label-list> <value>;
+#X text 376 645 type <group-label-list> <type>;
+#X text 376 545 info <group-label-list> <value> <min> <max> <id> <type>
+;
+#X text 171 706 <group-label-list>;
+#X obj 172 687 print client_remove;
+#X obj 67 775 print client_added;
+#X obj 119 745 print client_update;
+#X msg 173 308 mybang;
+#X msg 223 415 mysymbol bla;
+#X msg 224 390 mysymbol a\ string\ test\ bla;
+#X floatatom 89 603 5 0 0 0 - - -;
+#X text 132 602 parameter id;
+#X msg 91 198 open ws://localhost:10000;
+#X obj 111 575 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 132 573 connected;
+#X msg 187 358 toggle \$1;
+#X text 152 219 close connection;
+#X msg 254 468 sensor1 \$1;
+#X msg 391 274 info mybang;
+#X msg 391 297 readonly mybang;
+#X obj 134 545 print client_info;
+#X text 14 9 RabbitControl for Pd;
+#X obj 47 49 rcp.client;
+#X text 136 49 - rcp client;
+#X text 45 879 see also:;
+#X obj 123 878 rcp.server;
+#X text 284 197 connect to a rcp server;
+#X text 47 83 Rabbitcontrol allows you to control values (parameters)
+on a remote system in an easy way. The remote system (rcp-server) exposes
+parameters which are received and controlled by rcp-clients.;
+#X connect 0 0 3 0;
+#X connect 0 1 22 0;
+#X connect 0 2 25 0;
+#X connect 0 3 32 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 4 0;
+#X connect 4 0 17 0;
+#X connect 4 1 18 0;
+#X connect 4 2 16 0;
+#X connect 5 0 29 0;
+#X connect 6 0 27 0;
+#X connect 7 0 0 0;
+#X connect 19 0 0 0;
+#X connect 20 0 0 0;
+#X connect 21 0 0 0;
+#X connect 24 0 0 0;
+#X connect 27 0 0 0;
+#X connect 29 0 0 0;
+#X connect 30 0 0 0;
+#X connect 31 0 0 0;

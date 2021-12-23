@@ -1,0 +1,27 @@
+#N canvas 111 114 507 497 12;
+#X obj 151 319 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 146 251 1 2 3 4;
+#X text 169 319 client connected;
+#X msg 111 199 close;
+#X msg 101 176 open ws://localhost:12000;
+#X msg 91 153 open ws://localhost:10000;
+#X text 14 9 RabbitControl for Pd;
+#X text 44 452 see also:;
+#X text 208 251 send binary data;
+#X obj 91 387 print client-binary;
+#X obj 121 359 print client-message;
+#X obj 47 49 ws.client;
+#X text 117 49 - websocket client;
+#X text 48 83 A simple websocket client independent from RabbitControl.
+It can receive binary- and message-(string)-data. Currently it is only
+possible to send binary data.;
+#X obj 91 292 ws.client;
+#X obj 122 451 ws.server;
+#X connect 1 0 14 0;
+#X connect 3 0 14 0;
+#X connect 4 0 14 0;
+#X connect 5 0 14 0;
+#X connect 14 0 9 0;
+#X connect 14 1 10 0;
+#X connect 14 2 0 0;

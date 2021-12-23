@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\rcp">
+      <UniqueIdentifier>{72b5e490-db0d-4338-ad2e-b4a7837a4888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\rcp">
+      <UniqueIdentifier>{d99261f8-e49f-4981-8a79-a45784c1ccce}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\sources\IPdServerTransporter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\pd_sppp.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp_pd_server_transporter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp_size_prefixer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcpPdBangParameter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcpPdBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\RcpPdBoolParameter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcpPdFloatParameter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcpPdInt32Parameter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcpPdNumberParameter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcpPdParameterBase.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcpPdRabbitholeServerTransporter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcpPdServer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\RcpPdStringParameter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcpPdValueParameter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcpPdWebsocketServerTransporter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\websocketClient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\websocketServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_client.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_client_transporter.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_endian.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_infodata.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_langstr.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_log_transporter.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_logging.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_manager.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_option.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_packet.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_parameter.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_parser.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_server.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_server_transporter.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_size_prefixed_packet_parser.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_slip.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_string.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_transporter.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\rcp_typedefinition.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sources\rcp\types.h">
+      <Filter>Header Files\rcp</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\sources\rcp_pd_server_transporter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp_size_prefixer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcpPdBangParameter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcpPdBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\RcpPdBoolParameter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcpPdFloatParameter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcpPdInt32Parameter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcpPdParameterBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcpPdRabbitholeServerTransporter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcpPdServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\RcpPdStringParameter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcpPdValueParameter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcpPdWebsocketServerTransporter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\websocketClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_client.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_client_transporter.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_endian.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_infodata.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_langstr.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_log_transporter.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_logging.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_manager.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_option.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_packet.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_parameter.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_parser.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_server.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_server_transporter.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_size_prefixed_packet_parser.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_slip.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_string.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\rcp\rcp_typedefinition.c">
+      <Filter>Source Files\rcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\pd_sppp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

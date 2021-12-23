@@ -1,0 +1,30 @@
+#N canvas 111 86 559 565 12;
+#X text 44 519 see also:;
+#X obj 47 49 sppp;
+#X text 91 49 - size prefixed packet parser;
+#X msg 84 199 0 0 0 3 1 2 3;
+#X obj 84 447 print packet;
+#X msg 201 336 reset;
+#X msg 146 262 1;
+#X msg 156 285 2 3;
+#X obj 122 518 sizeprefix;
+#X text 195 198 a list with packet size and data;
+#X obj 84 380 sppp 2048;
+#X text 167 379 optional creation argument:;
+#X text 177 399 - buffer size (int) default: 1024;
+#X text 14 9 RabbitControl for Pd;
+#X msg 127 240 0 \, 0 \, 0 3;
+#X text 209 239 1 packet size;
+#X text 209 261 2 send first byte;
+#X text 209 284 3 send more bytes;
+#X text 251 335 reset parser;
+#X text 44 89 First 4 bytes (big endian) define the length of a packet.
+All following bytes are collected and output once all data-bytes are
+received.;
+#X text 43 144 This is useful for unframed data e.g. using tcp.;
+#X connect 3 0 10 0;
+#X connect 5 0 10 0;
+#X connect 6 0 10 0;
+#X connect 7 0 10 0;
+#X connect 10 0 4 0;
+#X connect 14 0 10 0;
