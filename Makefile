@@ -41,6 +41,7 @@ ifeq ($(OS),Windows_NT)
     MACOS_VERSION_MIN=
     OPENSSL_INCLUDE=/usr/include
     OPENSSL_ldflags=
+    ADDITIONAL_ldflags=
 else
     UNAME_S := $(shell uname -s)
     MINGW_ldflags=
@@ -53,6 +54,7 @@ else
         MACOS_VERSION_MIN=
         OPENSSL_INCLUDE = $(OPENSSL_BASE)/include
         OPENSSL_ldflags = -L$(OPENSSL_BASE) -lssl -lcrypto
+        ADDITIONAL_ldflags = -lbsd
     endif
     ifeq ($(UNAME_S),Darwin)
         
@@ -88,7 +90,7 @@ cflags = -I$(RCP_INCLUDE) -I$(FLEXT_INCLUDE) -I$(ASIO_INCLUDE) -I$(WEBSOCKETPP_I
 # use c++11 for STL in ASIO and websocketpp
 CXXFLAGS = -std=c++11
 
-ldflags = $(REMOVE_DEAD) $(MINGW_ldflags)
+ldflags = $(REMOVE_DEAD) $(MINGW_ldflags) $(ADDITIONAL_ldflags)
 
 ifeq ($(NO_SSL),false)
     cflags += -I$(OPENSSL_INCLUDE)

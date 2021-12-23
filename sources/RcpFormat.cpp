@@ -39,6 +39,7 @@
 
 #include <stdint.h>
 #include <cstring>
+#include <stdexcept>
 
 #include <rcp_endian.h>
 #include <rcp_option.h>

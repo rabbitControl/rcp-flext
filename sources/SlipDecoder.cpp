@@ -37,6 +37,8 @@
 
 #include "SlipDecoder.h"
 
+#include <stdexcept>
+
 namespace rcp
 {
 
