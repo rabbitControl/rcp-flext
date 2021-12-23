@@ -60,7 +60,6 @@ else
 
         #
         #ADDITIONAL_cflags += -isysroot /path/to/MacOSX10.13.sdk
-        ADDITIONAL_cflags += -isysroot /Users/inx/Developer/MacOSX10.13.sdk
         # minimum 10.9 for libc++
         ADDITIONAL_cflags += -mmacosx-version-min=10.9
         
