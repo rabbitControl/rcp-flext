@@ -19,7 +19,7 @@ ASIO_INCLUDE = $(DEPENDENCIES_BASE)/asio/asio/include
 WEBSOCKETPP_INCLUDE = $(DEPENDENCIES_BASE)/websocketpp
 
 # openssl
-OPENSSL_BASE = ../openssl-1.1.1k
+OPENSSL_BASE = ../openssl-1.1.1m
 COPY_OPENSSL = true
 
 # max/msp
@@ -64,6 +64,7 @@ else
         ADDITIONAL_cflags += -mmacosx-version-min=10.9
         
         ifeq ($(EXT_TARGET),MAX)
+            # attention: this needs multi-arch openssl
             ADDITIONAL_cflags += -arch x86_64
             ADDITIONAL_cflags += -arch i386
         endif
