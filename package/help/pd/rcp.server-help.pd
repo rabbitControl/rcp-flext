@@ -1,4 +1,4 @@
-#N canvas 90 36 923 1106 12;
+#N canvas 72 23 923 1106 12;
 #X obj 75 708 rcp.server;
 #X msg 140 334 expose i integer;
 #X msg 152 356 expose t toggle;
@@ -43,9 +43,9 @@
 #X text 457 618 remove parameter;
 #X text 126 274 expose a parameter;
 #X text 126 290 expose <type> <group> <group> ... <label>;
-#N canvas 108 34 872 550 parameter-in-groups 0;
+#N canvas 29 44 872 550 parameter-in-groups 0;
 #X msg 87 129 expose i group1 int1;
-#X msg 107 157 expose i group2 int2;
+#X msg 106 157 expose i group2 int2;
 #X floatatom 316 225 5 0 0 0 - - -;
 #X msg 317 390 remove group1;
 #X msg 649 454 info group1 int1;
@@ -73,7 +73,7 @@
 #X connect 9 0 11 0;
 #X connect 10 0 11 0;
 #X restore 492 759 pd parameter-in-groups;
-#N canvas 278 168 597 766 min-max-and-info 0;
+#N canvas 116 93 597 766 min-max-and-info 0;
 #X msg 81 255 setmin group1 g2 int1 0;
 #X msg 93 280 setmax group1 g2 int1 100;
 #X msg 125 308 min group1 g2 int1;
@@ -113,7 +113,7 @@
 #X msg 610 964 browse http://client.rabbitcontrol.cc;
 #X text 489 918 open the webclient and connect to localhost:100000
 ;
-#N canvas 128 170 596 694 rabbithole 0;
+#N canvas 120 153 596 694 rabbithole 0;
 #X text 43 22 Rabbithole allows you to access your parameters over
 the internet.;
 #X obj 46 94 pdcontrol;
@@ -145,7 +145,7 @@ public tunnel (or use private tunnel with an rabbithole account):;
 #X connect 13 0 11 0;
 #X connect 14 0 13 0;
 #X restore 491 879 pd rabbithole;
-#N canvas 296 109 479 370 parameter-info 0;
+#N canvas 154 100 479 370 parameter-info 0;
 #X msg 97 148 value group1 g2 int1;
 #X msg 120 200 id group1 g2 int1;
 #X msg 143 253 type group1 g2 int1;
@@ -174,7 +174,7 @@ public tunnel (or use private tunnel with an rabbithole account):;
 #X text 177 236 get port currently listening to;
 #X text 189 185 listen message to set or change port;
 #X msg 646 548 mybang;
-#N canvas 835 330 696 328 parameter-options 0;
+#N canvas 85 102 696 232 parameter-options 0;
 #X msg 71 97 readonly sensor1;
 #X obj 56 138 s server;
 #X text 53 38 readonly;

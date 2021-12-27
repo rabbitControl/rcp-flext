@@ -7,12 +7,12 @@
 #X text 177 226 - sizeprefix;
 #X obj 156 253 print size_prefix;
 #X obj 89 282 print original_list;
-#X text 47 75 outputs a size prefix of 4 bytes (big endian) at the
-right outlet. the original list is passed through to the left outlet.
-;
 #X msg 89 180 1 2 3;
 #X text 47 125 useful if sending data via e.g. tcp;
 #X text 14 9 RabbitControl for Pd;
+#X text 47 75 Outputs a size prefix of 4 bytes (big endian) at the
+right outlet. the original list is passed through to the left outlet.
+;
 #X connect 4 0 7 0;
 #X connect 4 1 6 0;
-#X connect 9 0 4 0;
+#X connect 8 0 4 0;

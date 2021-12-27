@@ -1,4 +1,4 @@
-#N canvas 384 100 443 755 12;
+#N canvas 140 83 443 755 12;
 #X declare -lib rcp;
 #X obj 15 34 declare -lib rcp;
 #X obj 125 345 rcp.server;
@@ -10,12 +10,9 @@
 #X text 74 318 RabbitControl;
 #X text 74 638 Websocket;
 #X obj 45 232 pdcontrol;
-#X msg 45 138 browse https://rabbitcontrol.cc;
 #X msg 45 158 browse https://github.com/rabbitcontrol/RCP;
 #X text 14 9 RabbitControl for Pd;
 #X text 43 287 object overview;
-#X text 44 83 RabbitControl is a protocol for remote-control: Control
-parameters exposed from Pd.;
 #X obj 125 456 rcp.debug;
 #X obj 125 426 rcp.format 1;
 #X obj 227 426 rcp.parse;
@@ -26,7 +23,10 @@ parameters exposed from Pd.;
 #X text 74 528 Packet framing utilities;
 #X text 54 186 please find the source-code of the Pd externals here:
 ;
-#X msg 55 208 browse https://github.com/rabbitcontrol/rcp-flext;
+#X msg 55 207 browse https://github.com/rabbitcontrol/rcp-flext;
+#X msg 45 138 browse http://rabbitcontrol.cc;
+#X text 44 83 RabbitControl is a protocol for remote-control: control
+parameters exposed from Pd.;
 #X connect 10 0 9 0;
-#X connect 11 0 9 0;
-#X connect 24 0 9 0;
+#X connect 22 0 9 0;
+#X connect 23 0 9 0;
