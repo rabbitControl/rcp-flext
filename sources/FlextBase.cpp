@@ -101,7 +101,14 @@ namespace rcp
 
     void FlextBase::postVersion()
     {
+#if FLEXT_SYS == FLEXT_SYS_MAX
+        post("RCP Max version: %s", RCP_PD_VERSION);
+#elif FLEXT_SYS == FLEXT_SYS_PD
         post("RCP Pd version: %s", RCP_PD_VERSION);
+#else
+        post("RCP Pd/Max version: %s", RCP_PD_VERSION);
+#endif
+
         post("RCP version: %s", RCP_VERSION);
     }
 
