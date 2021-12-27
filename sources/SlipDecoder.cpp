@@ -41,7 +41,6 @@
 
 namespace rcp
 {
-
     static void packet_cb(char* data, size_t data_size, void* user)
     {
         if (user == nullptr)
@@ -56,7 +55,7 @@ namespace rcp
     SlipDecoder::SlipDecoder(int argc, t_atom *argv) :
         m_slip(nullptr)
     {
-        AddInList();
+        AddInAnything();
 
         FLEXT_ADDMETHOD(0, m_float);
         FLEXT_ADDMETHOD(0, m_list);

@@ -53,7 +53,7 @@ namespace rcp
 
     SlipEncoder::SlipEncoder()
     {
-        AddInList();
+        AddInAnything();
 
         FLEXT_ADDMETHOD(0, m_list);
     }

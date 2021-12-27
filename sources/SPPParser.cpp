@@ -54,7 +54,7 @@ namespace rcp
     SPPParser::SPPParser(int argc, t_atom *argv) :
         m_parser(nullptr)
     {
-        AddInList();
+        AddInAnything();
 
         FLEXT_ADDMETHOD(0, m_float);
         FLEXT_ADDMETHOD(0, m_list);

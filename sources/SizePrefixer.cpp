@@ -46,7 +46,7 @@ namespace rcp
 
     SizePrefixer::SizePrefixer()
     {
-        AddInList();
+        AddInAnything();
 
         AddOutList();
 
