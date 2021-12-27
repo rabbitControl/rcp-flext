@@ -1,12 +1,12 @@
 [submodule "dependencies/flext"]
 	path = dependencies/flext
-	url = git@github.com:grrrr/flext.git
+	url = https://github.com/grrrr/flext.git
 [submodule "dependencies/asio"]
 	path = dependencies/asio
-	url = git@github.com:chriskohlhoff/asio.git
+	url = https://github.com/chriskohlhoff/asio.git
 [submodule "dependencies/websocketpp"]
 	path = dependencies/websocketpp
-	url = git@github.com:zaphoyd/websocketpp.git
+	url = https://github.com/zaphoyd/websocketpp.git
 [submodule "dependencies/rcp-c"]
 	path = dependencies/rcp-c
-	url = git@github.com:rabbitControl/rcp-c.git
+	url = https://github.com/rabbitControl/rcp-c.git
