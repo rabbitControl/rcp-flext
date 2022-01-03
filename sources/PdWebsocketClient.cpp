@@ -135,5 +135,4 @@ namespace rcp
     }
 
     FLEXT_LIB("ws.client", PdWebsocketClient);
-
 }

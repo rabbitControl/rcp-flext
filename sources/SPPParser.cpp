@@ -155,5 +155,4 @@ namespace rcp
     }
 
     FLEXT_LIB_V("sppp", SPPParser)
-
 }

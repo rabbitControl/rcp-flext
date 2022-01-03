@@ -40,10 +40,6 @@
 
 #include <flext.h>
 
-#if !defined(FLEXT_VERSION) || (FLEXT_VERSION < 401)
-#error You need at least flext version 0.4.1
-#endif
-
 #include "WebsocketClientImpl.h"
 
 namespace rcp

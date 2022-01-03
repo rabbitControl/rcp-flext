@@ -37,25 +37,8 @@
 
 #include "FlextBase.h"
 
-#include <algorithm>
-#include <cstring>
-
-#include <rcp.h>
-
-#include "version.h"
-
-#include "ParameterServer.h"
-#include "ParameterClient.h"
-#include "PdWebsocketServer.h"
-#include "PdWebsocketClient.h"
 #include "RcpDebug.h"
-#include "RcpFormat.h"
-#include "RcpParse.h"
-
-#include "SizePrefixer.h"
-#include "SPPParser.h"
-#include "SlipDecoder.h"
-#include "SlipEncoder.h"
+#include "RcpBase.h"
 
 #ifndef LIBRARY_NAME
 #define LIBRARY_NAME rcp
@@ -64,12 +47,21 @@
 
 namespace rcp
 {
-
-    bool FlextBase::debugLogging = false;
+    class ParameterServer;
+    class ParameterClient;
+    class PdWebsocketServer;
+    class PdWebsocketClient;
+    class RcpDebug;
+    class RcpFormat;
+    class RcpParse;
+    class SizePrefixer;
+    class SPPParser;
+    class SlipDecoder;
+    class SlipEncoder;
 
     static void rcp_main_setup()
     {
-        FlextBase::postRabbitcontrolInit();
+        RcpBase::postRabbitcontrolInit();
 
         // call the objects' setup routines
         FLEXT_SETUP(ParameterServer);
@@ -87,44 +79,6 @@ namespace rcp
         FLEXT_SETUP(SlipEncoder);
     }
 
-    void FlextBase::postRabbitcontrolInit()
-    {
-        post("");
-    #if FLEXT_SYS == FLEXT_SYS_MAX
-        FlextBase::rabbitPost("RabbitControl for Max");
-    #elif FLEXT_SYS == FLEXT_SYS_PD
-        FlextBase::rabbitPost("RabbitControl for Pd");
-    #else
-        FlextBase::rabbitPost("RabbitControl");
-    #endif
-    }
-
-    void FlextBase::postVersion()
-    {
-#if FLEXT_SYS == FLEXT_SYS_MAX
-        post("RCP Max version: %s", RCP_PD_VERSION);
-#elif FLEXT_SYS == FLEXT_SYS_PD
-        post("RCP Pd version: %s", RCP_PD_VERSION);
-#else
-        post("RCP Pd/Max version: %s", RCP_PD_VERSION);
-#endif
-
-        post("RCP version: %s", RCP_VERSION);
-    }
-
-    void FlextBase::rabbitPost(const char* msg)
-    {
-        post("()()");
-        (msg != NULL && strlen(msg) > 0 ) ? post(" oO    %s", msg) : post(" oO");
-        post("  x");
-    }
-
-    void FlextBase::rabbitPostOneline(const char* msg)
-    {
-        (msg != NULL && strlen(msg) > 0 ) ? post("()()    %s", msg) : post("()()");
-    }
-
     FLEXT_LIB_SETUP(LIBRARY_NAME, rcp::rcp_main_setup);
-
 }
 

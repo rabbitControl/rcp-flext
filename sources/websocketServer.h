@@ -38,8 +38,8 @@
 #ifndef RABBITCONTROL_WEBSOCKET_SERVER_H
 #define RABBITCONTROL_WEBSOCKET_SERVER_H
 
-#include <iostream>
 #include <set>
+#include <iostream>
 
 // NOTE: needed to figure out ASIO_STANDALONE before including websocketpp
 #include <asio.hpp>
@@ -141,7 +141,6 @@ namespace rcp
             if (!ws_thread)
             {
                 // start service thread
-                std::cout << "starting service thread\n";
                 ws_thread = new websocketpp::lib::thread(std::bind(&websocketServer::process_messages, this));
             }
         }

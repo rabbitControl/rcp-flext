@@ -38,8 +38,6 @@
 #ifndef FLEXTBASE_H
 #define FLEXTBASE_H
 
-#define FLEXT_ATTRIBUTES 1
-
 #include <flext.h>
 
 #if !defined(FLEXT_VERSION) || (FLEXT_VERSION < 401)
@@ -48,18 +46,9 @@
 
 namespace rcp
 {
-
-    class FlextBase : public flext_base
+    class FlextBase
     {
     public:
-
-        static void postVersion();
-        static void rabbitPost(const char* msg);
-        static void rabbitPostOneline(const char* msg);
-        static void postRabbitcontrolInit();
-
-        // config
-        static bool debugLogging;
     };
 
 }

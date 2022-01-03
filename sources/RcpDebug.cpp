@@ -39,7 +39,7 @@
 
 #include <rcp_memory.h>
 
-#include "FlextBase.h"
+#include "RcpBase.h"
 
 #ifdef __cplusplus
 extern "C"{
@@ -72,18 +72,18 @@ namespace rcp
 
     void RcpDebug::m_bang()
     {
-        FlextBase::postRabbitcontrolInit();
+        RcpBase::postRabbitcontrolInit();
         m_version();
     }
 
     void RcpDebug::m_debug(bool b)
     {
-        FlextBase::debugLogging = b;
+        RcpBase::debugLogging = b;
     }
 
     void RcpDebug::m_version()
     {
-        FlextBase::postVersion();
+        RcpBase::postVersion();
     }
 
     void RcpDebug::m_memory()
@@ -93,5 +93,4 @@ namespace rcp
     }
 
     FLEXT_LIB("rcp.debug", RcpDebug);
-
 }

@@ -278,5 +278,4 @@ namespace rcp
     }
 
     FLEXT_LIB("rcp.client", ParameterClient);
-
 }

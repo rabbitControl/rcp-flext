@@ -38,16 +38,10 @@
 #ifndef RCPFORMAT_H
 #define RCPFORMAT_H
 
-#define FLEXT_ATTRIBUTES 1
-
-#include <flext.h>
-
-#if !defined(FLEXT_VERSION) || (FLEXT_VERSION < 401)
-#error You need at least flext version 0.4.1
-#endif
-
 #include <string>
 #include <vector>
+
+#include <flext.h>
 
 #include <rcp.h>
 

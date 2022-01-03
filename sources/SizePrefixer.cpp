@@ -70,7 +70,5 @@ namespace rcp
         ToOutList(0, argc, argv);
     }
 
-
     FLEXT_LIB("sizeprefix", SizePrefixer)
-
 }

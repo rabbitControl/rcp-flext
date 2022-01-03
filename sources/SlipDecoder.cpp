@@ -143,5 +143,4 @@ namespace rcp
     }
 
     FLEXT_LIB_V("slipdecoder", SlipDecoder)
-
 }

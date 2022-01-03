@@ -38,13 +38,7 @@
 #ifndef SPPPARSER_H
 #define SPPPARSER_H
 
-#include <iostream>
-
 #include <flext.h>
-
-#if !defined(FLEXT_VERSION) || (FLEXT_VERSION < 401)
-#error You need at least flext version 0.4.1
-#endif
 
 #include <rcp_sppp.h>
 

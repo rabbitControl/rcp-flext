@@ -60,7 +60,7 @@ namespace rcp
     public:
         // implement IPdServerTransporter
         rcp_server_transporter* transporter() const override;
-        virtual void bind(uint16_t port) override {}
+        virtual void bind(uint16_t /*port*/) override {}
         virtual void unbind() override {}
         virtual void pushData(char* data, size_t data_size) const override;
         uint16_t port() const override { return 0; }

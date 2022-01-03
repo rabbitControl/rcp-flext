@@ -38,12 +38,11 @@
 #ifndef PARAMETERSERVER_H
 #define PARAMETERSERVER_H
 
-#include "ParameterServerClientBase.h"
-
 #include <vector>
 
 #include <rcp_server.h>
 
+#include "ParameterServerClientBase.h"
 #include "PdServerTransporter.h"
 #include "IServerTransporter.h"
 #include "websocketServer.h"

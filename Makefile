@@ -118,13 +118,14 @@ ifeq ($(EXT_TARGET),PD)
     #       introducing: depcheck.ignore to ignore dependency check
     # ignore depcheck (c++11 not defined in depcheck, so asio fails)
     depcheck.ignore = true
-    cxx.flags = $(CXXFLAGS)
-    lib.setup.sources = $(RCP_LIB_EXT)
-    common.sources = $(RCP_SRC) 
-    # compile as lib
-    make-lib-executable = yes
+    
     suppress-wunused = yes
-      
+    cxx.flags = $(CXXFLAGS)
+    common.sources = $(RCP_SRC)
+    # compile as lib
+    lib.setup.sources= $(RCP_LIB_EXT)
+    make-lib-executable = yes
+    
     PDINCLUDEDIR = $(DEPENDENCIES_BASE)/pd
     
     # include pd-lib-builder

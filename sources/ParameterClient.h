@@ -38,11 +38,9 @@
 #ifndef PARAMETERCLIENT_H
 #define PARAMETERCLIENT_H
 
-
-#include "ParameterServerClientBase.h"
-
 #include <rcp_client.h>
 
+#include "ParameterServerClientBase.h"
 #include "IClientTransporter.h"
 #include "websocketClient.h"
 

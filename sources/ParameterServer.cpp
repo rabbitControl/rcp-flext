@@ -39,8 +39,6 @@
 
 #include <string.h>
 
-#include <flsupport.h>
-
 #include <rcp_manager.h>
 #include <rcp_parameter.h>
 #include <rcp_typedefinition.h>
@@ -724,7 +722,5 @@ namespace rcp
         }
     }
 
-
-	FLEXT_LIB_V("rcp.server", ParameterServer);
-
+    FLEXT_LIB_V("rcp.server", ParameterServer);
 }

@@ -517,5 +517,4 @@ namespace rcp
     }
 
     FLEXT_LIB_V("rcp.format", RcpFormat);
-
 }

@@ -115,5 +115,4 @@ namespace rcp
     }
 
     FLEXT_LIB("slipencoder", SlipEncoder)
-
 }

@@ -37,8 +37,6 @@
 
 #include "WebsocketClientTransporter.h"
 
-#include "FlextBase.h"
-
 #include <rcp_memory.h>
 #include <rcp_logging.h>
 

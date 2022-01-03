@@ -38,19 +38,17 @@
 #ifndef RABBITHOLESERVERTRANSPORTER_H
 #define RABBITHOLESERVERTRANSPORTER_H
 
+#include <flext.h>
+
 #include <rcp_server_transporter.h>
 
 #include "IServerTransporter.h"
 #include "websocketClient.h"
 
-#include <flext.h>
-#include <flsupport.h>
-
 typedef struct _pd_rabbithole_server_transporter pd_rabbithole_server_transporter;
 
 namespace rcp
 {
-
     class RabbitHoleServerTransporter
             : public IServerTransporter
             , public websocketClient

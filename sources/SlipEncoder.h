@@ -38,13 +38,9 @@
 #ifndef SLIPENCODER_H
 #define SLIPENCODER_H
 
-#include <flext.h>
-
-#if !defined(FLEXT_VERSION) || (FLEXT_VERSION < 401)
-#error You need at least flext version 0.4.1
-#endif
-
 #include <vector>
+
+#include <flext.h>
 
 namespace rcp
 {

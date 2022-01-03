@@ -38,22 +38,15 @@
 #ifndef PARAMETERSERVERCLIENTBASE_H
 #define PARAMETERSERVERCLIENTBASE_H
 
-#define FLEXT_ATTRIBUTES 1
+#include <vector>
 
 #include <flext.h>
-
-#if !defined(FLEXT_VERSION) || (FLEXT_VERSION < 401)
-#error You need at least flext version 0.4.1
-#endif
-
-#include <vector>
 
 #include <rcp_parameter_type.h>
 #include <rcp_manager_type.h>
 
 namespace rcp
 {
-
     class ParameterServerClientBase : public flext_base
     {
         FLEXT_HEADER(ParameterServerClientBase, flext_base)
