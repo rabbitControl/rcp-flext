@@ -39,6 +39,7 @@
 
 #include <cstring>
 #include <cstdlib>
+#include <vector>
 
 #include <rcp_packet.h>
 #include <rcp_parameter.h>
@@ -92,13 +93,13 @@ namespace rcp
 
     void PdWebsocketServer::received(char* data, size_t size, void* /*client*/)
     {
-        t_atom list[size];
+        std::vector<t_atom> list(size);
         for (size_t i=0; i<size; i++)
         {
             SetInt(list[i], data[i]);
         }
 
-        ToOutList(0, size, list);
+        ToOutList(0, size, list.data());
     }
 
     void PdWebsocketServer::socketerror(const char* reason)
@@ -110,7 +111,7 @@ namespace rcp
 
     void PdWebsocketServer::m_list(int argc, t_atom* argv)
     {
-        char data[argc];
+        std::vector<char> data(argc);
 
         for (int i=0; i<argc; i++)
         {
@@ -132,7 +133,7 @@ namespace rcp
             }
         }
 
-        m_server->send(data, argc);
+        m_server->send(data.data(), argc);
     }
 
     void PdWebsocketServer::m_listen(int& port)

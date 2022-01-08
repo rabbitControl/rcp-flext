@@ -40,6 +40,7 @@
 #include <stdint.h>
 #include <cstring>
 #include <stdexcept>
+#include <vector>
 
 #include <rcp_endian.h>
 #include <rcp_option.h>
@@ -147,7 +148,7 @@ namespace rcp
                 // send update with label
 
                 // 4 18 id id t 0 33 any len label 0 0 0
-                t_atom list[6 + labelOption.size()];
+                std::vector<t_atom> list(6 + labelOption.size());
                 SETUP_UPDATE_PACKET(m_id, list, DATATYPE_BANG);
 
                 // add option label
@@ -156,7 +157,7 @@ namespace rcp
                     SetInt(list[6+i], labelOption[i]);
                 }
 
-                ToOutList(0, 6 + labelOption.size(), list);
+                ToOutList(0, 6 + labelOption.size(), list.data());
             }
         }
     }
@@ -184,7 +185,7 @@ namespace rcp
                 // send update with label
 
                 // 4 18 id id t 0 32 v v v v 33 any len label 0 0 0
-                t_atom list[11 + labelOption.size()];
+                std::vector<t_atom> list(11 + labelOption.size());
                 SETUP_UPDATE_PACKET(m_id, list, DATATYPE_INT32);
                 STORE_32_TO_LIST(v, list, 7);
 
@@ -194,7 +195,7 @@ namespace rcp
                     SetInt(list[11+i], labelOption[i]);
                 }
 
-                ToOutList(0, 11 + labelOption.size(), list);
+                ToOutList(0, 11 + labelOption.size(), list.data());
             }
         }
         else if (m_type == DATATYPE_BOOLEAN)
@@ -217,7 +218,7 @@ namespace rcp
                 // send update with label
 
                 // 4 18 id id t 0 32 v 33 any len label 0 0 0
-                t_atom list[8 + labelOption.size()];
+                std::vector<t_atom> list(8 + labelOption.size());
                 SETUP_UPDATE_PACKET(m_id, list, DATATYPE_BOOLEAN);
 
                 SetInt(list[7], v > 0 ? 1 : 0);
@@ -228,7 +229,7 @@ namespace rcp
                     SetInt(list[8+i], labelOption[i]);
                 }
 
-                ToOutList(0, 8 + labelOption.size(), list);
+                ToOutList(0, 8 + labelOption.size(), list.data());
             }
         }
         else if (m_type == DATATYPE_FLOAT32)
@@ -270,7 +271,7 @@ namespace rcp
                 // send update with label
 
                 // 4 18 id id t 0 32 v v v v 33 any len label 0 0 0
-                t_atom list[11 + labelOption.size()];
+                std::vector<t_atom> list(11 + labelOption.size());
                 SETUP_UPDATE_PACKET(m_id, list, DATATYPE_FLOAT32);
 
                 STORE_32_TO_LIST((uint32_t)uu.i, list, 7);
@@ -281,7 +282,7 @@ namespace rcp
                     SetInt(list[11+i], labelOption[i]);
                 }
 
-                ToOutList(0, 11 + labelOption.size(), list);
+                ToOutList(0, 11 + labelOption.size(), list.data());
             }
         }
         else if (m_type == DATATYPE_INT32 ||
@@ -310,7 +311,7 @@ namespace rcp
             {
                 // send valueupdate
                 // 06 id id type s s s s v v v v
-                t_atom list[8 + str_len];
+                std::vector<t_atom> list(8 + str_len);
                 SetInt(list[0], COMMAND_UPDATEVALUE);
                 STORE_ID_TO_LIST(m_id, list, 1);
                 SetInt(list[3], DATATYPE_STRING);
@@ -323,14 +324,14 @@ namespace rcp
                     SetInt(list[8+i], str[i]);
                 }
 
-                ToOutList(0, 8 + str_len, list);
+                ToOutList(0, 8 + str_len, list.data());
             }
             else
             {
                 // send update with label
 
                 // 4 18 id id t 0 32 s s s s string-data 33 any len label 0 0 0
-                t_atom list[11 + str_len + labelOption.size()];
+                std::vector<t_atom> list(11 + str_len + labelOption.size());
                 SETUP_UPDATE_PACKET(m_id, list, DATATYPE_STRING);
 
                 // set size prefix - long string
@@ -347,7 +348,7 @@ namespace rcp
                     SetInt(list[11 + str_len + i], labelOption[i]);
                 }
 
-                ToOutList(0, 11 + str_len + labelOption.size(), list);
+                ToOutList(0, 11 + str_len + labelOption.size(), list.data());
             }
         }
     }

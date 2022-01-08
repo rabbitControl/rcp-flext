@@ -37,6 +37,8 @@
 
 #include "PdWebsocketClient.h"
 
+#include <vector>
+
 #include <rcp_packet.h>
 #include <rcp_parameter.h>
 #include <rcp_typedefinition.h>
@@ -75,13 +77,13 @@ namespace rcp
 
     void PdWebsocketClient::received(char* data, size_t size)
     {
-        t_atom list[size];
+        std::vector<t_atom> list(size);
         for (size_t i=0; i<size; i++)
         {
             SetInt(list[i], data[i]);
         }
 
-        ToOutList(0, size, list);
+        ToOutList(0, size, list.data());
     }
 
     void PdWebsocketClient::received(const std::string& msg)
@@ -99,7 +101,7 @@ namespace rcp
             return;
         }
 
-        char data[argc];
+        std::vector<char> data(argc);
 
         for (int i=0; i<argc; i++)
         {
@@ -121,7 +123,7 @@ namespace rcp
             }
         }
 
-        m_client->send(data, argc);
+        m_client->send(data.data(), argc);
     }
 
     void PdWebsocketClient::m_open(const t_symbol *d)

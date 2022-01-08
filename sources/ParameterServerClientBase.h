@@ -39,6 +39,7 @@
 #define PARAMETERSERVERCLIENTBASE_H
 
 #include <vector>
+#include <string>
 
 #include <flext.h>
 

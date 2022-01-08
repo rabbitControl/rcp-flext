@@ -37,6 +37,8 @@
 
 #include "RcpParse.h"
 
+#include <vector>
+
 #include <rcp_packet.h>
 #include <rcp_parameter.h>
 #include <rcp_typedefinition.h>
@@ -57,7 +59,7 @@ namespace rcp
 
     void RcpParse::m_list(int argc, t_atom* argv)
     {
-        char data[argc];
+        std::vector<char> data(argc);
 
         for (int i=0; i<argc; i++)
         {
@@ -81,7 +83,7 @@ namespace rcp
 
         rcp_packet* packet = NULL;
         size_t data_size = argc;
-        char* data_p = data;
+        char* data_p = data.data();
 
         while (data_p != NULL
                && data_size > 0)
@@ -104,7 +106,7 @@ namespace rcp
 
                         // info version (app)
                         int len = 2 + (app_id != NULL ? 1 : 0);
-                        t_atom list[len];
+                        std::vector<t_atom> list(len);
 
                         SetSymbol(list[0], MakeSymbol("info"));
                         SetSymbol(list[1], MakeSymbol(version));
@@ -114,7 +116,7 @@ namespace rcp
                             SetSymbol(list[2], MakeSymbol(app_id));
                         }
 
-                        ToOutList(0, len, list);
+                        ToOutList(0, len, list.data());
                     }
                     else
                     {
@@ -195,7 +197,7 @@ namespace rcp
         // list update label value
 
         int len = 3 + (label != NULL ? 1 : 0);
-        t_atom list[len];
+        std::vector<t_atom> list(len);       
 
         int i=0;
         SetSymbol(list[i], MakeSymbol("update"));
@@ -229,7 +231,7 @@ namespace rcp
         }
 
         ToOutInt(1, id);
-        ToOutList(0, i, list);
+        ToOutList(0, i, list.data());
     }
 
     FLEXT_LIB("rcp.parse", RcpParse);

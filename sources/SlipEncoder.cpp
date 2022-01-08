@@ -37,6 +37,8 @@
 
 #include "SlipEncoder.h"
 
+#include <vector>
+
 #include <rcp_slip.h>
 
 namespace rcp
@@ -60,7 +62,7 @@ namespace rcp
 
     void SlipEncoder::m_list(int argc, t_atom *argv)
     {
-        char data[argc];
+        std::vector<char> data(argc);
         int offset = 0;
 
         for (int i=0; i<argc; i++)
@@ -70,7 +72,7 @@ namespace rcp
                 int id = (int)GetFloat(argv[i]);
                 if (id < 256 && id >= 0)
                 {
-                    data[i-offset] = id;
+                    data[i - offset] = id;
                 }
                 else
                 {
@@ -82,7 +84,7 @@ namespace rcp
                 int id = (int)GetInt(argv[i]);
                 if (id < 256 && id >= 0)
                 {
-                    data[i-offset] = id;
+                    data[i - offset] = id;
                 }
                 else
                 {
@@ -96,16 +98,16 @@ namespace rcp
         }
 
         m_data.clear();
-        rcp_slip_encode(data, argc - offset, data_out, this);
+        rcp_slip_encode(data.data(), argc - offset, data_out, this);
 
         // output data
-        t_atom atoms[m_data.size()];
+        std::vector<t_atom> atoms(m_data.size());
         for (size_t i=0; i<m_data.size(); i++)
         {
             SetInt(atoms[i], (unsigned char)m_data[i]);
         }
 
-        ToOutList(0, m_data.size(), atoms);
+        ToOutList(0, m_data.size(), atoms.data());
     }
 
 

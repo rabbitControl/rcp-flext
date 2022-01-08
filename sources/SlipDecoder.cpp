@@ -38,6 +38,7 @@
 #include "SlipDecoder.h"
 
 #include <stdexcept>
+#include <vector>
 
 namespace rcp
 {
@@ -132,14 +133,14 @@ namespace rcp
 
     void SlipDecoder::dataOut(char* data, size_t data_size) const
     {
-        t_atom atoms[data_size];
+        std::vector<t_atom> atoms(data_size);
 
         for (size_t i=0; i<data_size; i++)
         {
             SetInt(atoms[i], (unsigned char)data[i]);
         }
 
-        ToOutList(0, data_size, atoms);
+        ToOutList(0, data_size, atoms.data());
     }
 
     FLEXT_LIB_V("slipdecoder", SlipDecoder)

@@ -37,7 +37,8 @@
 
 #include "ParameterServer.h"
 
-#include <string.h>
+#include <string>
+#include <vector>
 
 #include <rcp_manager.h>
 #include <rcp_parameter.h>
@@ -159,7 +160,7 @@ namespace rcp
 	{
 		if (m_transporter)
 		{
-			char data[argc];
+            std::vector<char> data(argc);
 			int offset = 0;
 
 			for (int i=0; i<argc; i++)
@@ -178,7 +179,7 @@ namespace rcp
 				}
 			}
 
-			m_transporter->pushData(data, argc - offset);
+			m_transporter->pushData(data.data(), argc - offset);
 		}
         else
         {
@@ -188,14 +189,14 @@ namespace rcp
 
 	void ParameterServer::dataOut(char* data, size_t data_size) const
 	{
-		t_atom atoms[data_size];
+        std::vector<t_atom> atoms(data_size);
 		
 		for (size_t i=0; i<data_size; i++)
 		{
 			SetInt(atoms[i], data[i]);
 		}
 		
-		ToOutList(0, data_size, atoms);
+		ToOutList(0, data_size, atoms.data());
 	}
 
     void ParameterServer::getPort(int& p)

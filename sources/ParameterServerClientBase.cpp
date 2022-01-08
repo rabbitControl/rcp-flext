@@ -310,7 +310,7 @@ namespace rcp
             }
 
 
-            t_atom list[len];
+            std::vector<t_atom> list(len);
             int i=0;
 
 
@@ -377,7 +377,7 @@ namespace rcp
             SetString(list[i], ts.c_str());
             i++;
 
-            ToOutList(3, i, list);
+            ToOutList(3, i, list.data());
         }
     }
 
@@ -391,7 +391,7 @@ namespace rcp
             {
                 std::vector<std::string> groups = getParents(list->parameter);
 
-                t_atom groups_a[groups.size()];
+                std::vector<t_atom> groups_a(groups.size());
 
                 int i = 0;
                 for(std::vector<std::string>::reverse_iterator rit = groups.rbegin();
@@ -401,7 +401,7 @@ namespace rcp
                     i++;
                 }
 
-                _outputInfo(list->parameter, groups.size(), groups_a);
+                _outputInfo(list->parameter, groups.size(), groups_a.data());
 
                 list = list->next;
             }
@@ -422,7 +422,7 @@ namespace rcp
 
             // id <group-label-list> <id>
             int len = 2 + argc;
-            t_atom list[len];
+            std::vector<t_atom> list(len);
             int i=0;
 
             SetSymbol(list[i], MakeSymbol("id"));
@@ -435,7 +435,7 @@ namespace rcp
             SetInt(list[i], id);
             i++;
 
-            ToOutList(3, i, list);
+            ToOutList(3, i, list.data());
         }
     }
 
@@ -451,7 +451,7 @@ namespace rcp
 
             // id <group-label-list> <type>
             int len = 2 + argc;
-            t_atom list[len];
+            std::vector<t_atom> list(len);
             int i=0;
 
             SetSymbol(list[i], MakeSymbol("type"));
@@ -464,7 +464,7 @@ namespace rcp
             SetString(list[i], ts.c_str());
             i++;
 
-            ToOutList(3, i, list);
+            ToOutList(3, i, list.data());
         }
     }
 
@@ -477,7 +477,7 @@ namespace rcp
 
             // readonly <group-label-list> <ro>
             int len = 2 + argc;
-            t_atom list[len];
+            std::vector<t_atom> list(len);
             int i=0;
 
             SetSymbol(list[i], MakeSymbol("readonly"));
@@ -490,7 +490,7 @@ namespace rcp
             SetInt(list[i], ro ? 1 : 0);
             i++;
 
-            ToOutList(3, i, list);
+            ToOutList(3, i, list.data());
         }
     }
 
@@ -503,7 +503,7 @@ namespace rcp
 
             // order <group-label-list> <order>
             int len = 2 + argc;
-            t_atom list[len];
+            std::vector<t_atom> list(len);
             int i=0;
 
             SetSymbol(list[i], MakeSymbol("order"));
@@ -516,7 +516,7 @@ namespace rcp
             SetInt(list[i], order);
             i++;
 
-            ToOutList(3, i, list);
+            ToOutList(3, i, list.data());
         }
     }
 
@@ -529,7 +529,7 @@ namespace rcp
 
             // value <group-label-list> <value>
             int len = 1 + argc + (rcp_parameter_is_value(parameter) ? 1 : 0);
-            t_atom list[len];
+            std::vector<t_atom> list(len);
             int i=0;
 
             SetSymbol(list[i], MakeSymbol("value"));
@@ -560,7 +560,7 @@ namespace rcp
                 i++;
             }
 
-            ToOutList(3, i, list);
+            ToOutList(3, i, list.data());
         }
     }
 
@@ -576,7 +576,7 @@ namespace rcp
             {
                 // min <group-label-list> <min>
                 int len = 1 + argc + 1;
-                t_atom list[len];
+                std::vector<t_atom> list(len);
                 int i=0;
 
                 SetSymbol(list[i], MakeSymbol("min"));
@@ -597,7 +597,7 @@ namespace rcp
                     i++;
                 }
 
-                ToOutList(3, i, list);
+                ToOutList(3, i, list.data());
             }
         }
     }
@@ -614,7 +614,7 @@ namespace rcp
             {
                 // max <group-label-list> <max>
                 int len = 1 + argc + 1;
-                t_atom list[len];
+                std::vector<t_atom> list(len);
                 int i=0;
 
                 SetSymbol(list[i], MakeSymbol("max"));
@@ -635,7 +635,7 @@ namespace rcp
                     i++;
                 }
 
-                ToOutList(3, i, list);
+                ToOutList(3, i, list.data());
             }
         }
     }
@@ -672,7 +672,7 @@ namespace rcp
         // update group1 groupN... label value
 
         int len = 3 + groups.size();
-        t_atom list[len];
+        std::vector<t_atom> list(len);
 
         int i=0;
         SetSymbol(list[i], MakeSymbol("update"));
@@ -710,7 +710,7 @@ namespace rcp
         }
 
         ToOutInt(1, id);
-        ToOutList(0, i, list);
+        ToOutList(0, i, list.data());
     }
 
     std::string ParameterServerClientBase::GetAsString(const t_atom &a)

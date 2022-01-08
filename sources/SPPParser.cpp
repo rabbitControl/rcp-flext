@@ -37,6 +37,9 @@
 
 #include "SPPParser.h"
 
+#include <stdexcept>
+#include <vector>
+
 namespace rcp
 {
 
@@ -89,7 +92,7 @@ namespace rcp
 
     void SPPParser::m_list(int argc, t_atom *argv)
     {
-        char data[argc];
+        std::vector<char> data(argc);
         int offset = 0;
 
         for (int i=0; i<argc; i++)
@@ -124,7 +127,7 @@ namespace rcp
             }
         }
 
-        rcp_sppp_data(m_parser, data, argc - offset);
+        rcp_sppp_data(m_parser, data.data(), argc - offset);
     }
 
     void SPPParser::m_float(float f)
@@ -139,14 +142,14 @@ namespace rcp
 
     void SPPParser::dataOut(char* data, size_t data_size) const
     {
-        t_atom atoms[data_size];
+        std::vector<t_atom> atoms(data_size);
 
         for (size_t i=0; i<data_size; i++)
         {
             SetInt(atoms[i], data[i]);
         }
 
-        ToOutList(0, data_size, atoms);
+        ToOutList(0, data_size, atoms.data());
     }
 
     void SPPParser::m_reset()

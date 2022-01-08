@@ -37,6 +37,8 @@
 
 #include "ParameterClient.h"
 
+#include <vector>
+
 #include <rcp_parameter.h>
 #include <rcp_typedefinition.h>
 #include <rcp_logging.h>
@@ -160,7 +162,7 @@ namespace rcp
         // TODO: append userid?
 
         int len = 3 + groups.size();
-        t_atom list[len];
+        std::vector<t_atom> list(len);
 
         int i=0;
         SetSymbol(list[i], MakeSymbol("add"));
@@ -226,7 +228,7 @@ namespace rcp
         }
 
         ToOutInt(1, id);
-        ToOutList(0, i, list);
+        ToOutList(0, i, list.data());
     }
 
     void ParameterClient::parameterRemoved(rcp_parameter* parameter)
@@ -241,7 +243,7 @@ namespace rcp
         // remove group1 groupN... label
 
         int len = 2 + groups.size();
-        t_atom list[len];
+        std::vector<t_atom> list(len);
 
         int i=0;
         SetSymbol(list[i], MakeSymbol("remove"));
@@ -258,7 +260,7 @@ namespace rcp
         i++;
 
         ToOutInt(1, id);
-        ToOutList(0, i, list);
+        ToOutList(0, i, list.data());
     }
 
 
