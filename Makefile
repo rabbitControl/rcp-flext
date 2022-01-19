@@ -54,7 +54,6 @@ else
         MACOS_VERSION_MIN=
         OPENSSL_INCLUDE = $(OPENSSL_BASE)/include
         OPENSSL_ldflags = -L$(OPENSSL_BASE) -lssl -lcrypto
-        ADDITIONAL_ldflags = -lbsd
     endif
     ifeq ($(UNAME_S),Darwin)
         
