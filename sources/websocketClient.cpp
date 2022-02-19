@@ -37,7 +37,8 @@
 
 #include "websocketClient.h"
 
-#ifndef RCP_PD_NO_SSL
+#ifndef RCP_NO_SSL
+#include <openssl/asn1.h>
 #ifdef _WIN32
 #define strcasecmp _stricmp
 #endif
@@ -62,7 +63,7 @@ websocketClient::websocketClient()
     m_client.start_perpetual();
     m_thread = websocketpp::lib::make_shared<websocketpp::lib::thread>(&client::run, &m_client);
 
-#ifndef RCP_PD_NO_SSL
+#ifndef RCP_NO_SSL
     m_sslClient.clear_access_channels(websocketpp::log::alevel::all);
     m_sslClient.clear_error_channels(websocketpp::log::alevel::all);
 //    m_sslClient.clear_access_channels(websocketpp::log::alevel::frame_payload);
@@ -77,13 +78,13 @@ websocketClient::websocketClient()
 websocketClient::~websocketClient()
 {
     if (m_con) m_con->set_close_handler(nullptr);
-#ifndef RCP_PD_NO_SSL
+#ifndef RCP_NO_SSL
     if (m_sslCon) m_sslCon->set_close_handler(nullptr);
 #endif
 
 
     m_client.stop_perpetual();
-#ifndef RCP_PD_NO_SSL
+#ifndef RCP_NO_SSL
     m_sslClient.stop_perpetual();
 #endif
 
@@ -91,7 +92,7 @@ websocketClient::~websocketClient()
     disconnect();
 
     m_thread->join();
-#ifndef RCP_PD_NO_SSL
+#ifndef RCP_NO_SSL
     m_sslThread->join();
 #endif
 }
@@ -99,7 +100,7 @@ websocketClient::~websocketClient()
 
 void websocketClient::disconnect()
 {
-#ifndef RCP_PD_NO_SSL
+#ifndef RCP_NO_SSL
     if (m_sslCon)
     {
         m_sslCon->set_open_handler(nullptr);
@@ -157,7 +158,7 @@ void websocketClient::connect(const std::string& uri, const std::string& subprot
     websocketpp::lib::error_code ec;
     if (uri.find("wss", 0) == 0)
     {
-#ifndef RCP_PD_NO_SSL
+#ifndef RCP_NO_SSL
         m_sslCon = m_sslClient.get_connection(uri, ec);
         if (ec) {
             std::cout << "could not create connection: " << ec.message() << std::endl;
@@ -216,7 +217,7 @@ void websocketClient::connect(const std::string& uri, const std::string& subprot
 
 bool websocketClient::isOpen() const
 {
-#ifndef RCP_PD_NO_SSL
+#ifndef RCP_NO_SSL
     if (m_sslCon)
     {
         return m_sslCon->get_state() == websocketpp::session::state::open;
@@ -248,7 +249,7 @@ void websocketClient::on_message(connection_hdl /*hdl*/, client::message_ptr msg
 
 void websocketClient::send(char* data, size_t size)
 {
-#ifndef RCP_PD_NO_SSL
+#ifndef RCP_NO_SSL
     if (m_sslCon)
     {
         websocketpp::lib::error_code ec;
@@ -270,7 +271,7 @@ void websocketClient::send(char* data, size_t size)
 }
 
 
-#ifndef RCP_PD_NO_SSL
+#ifndef RCP_NO_SSL
 
 // ssl
 
@@ -285,14 +286,15 @@ context_ptr websocketClient::on_tls_init(websocketpp::connection_hdl)
                          asio::ssl::context::no_sslv3 |
                          asio::ssl::context::single_dh_use);
 
-
-        ctx->set_verify_mode(asio::ssl::verify_none);
-
-//            ctx->set_verify_mode(asio::ssl::verify_peer);
-//            ctx->set_verify_callback(bind(&websocketClient::verify_certificate, this, ::_1, ::_2));
+#ifdef RCP_VERIFY_SSL
+        ctx->set_verify_mode(asio::ssl::verify_peer);
+        ctx->set_verify_callback(bind(&websocketClient::verify_certificate, this, ::_1, ::_2));
 
         // Here we load the CA certificates of all CA's that this client trusts.
-//            ctx->load_verify_file("ca-chain.cert.pem");
+        ctx->load_verify_file("ca-chain.cert.pem");
+#else
+        ctx->set_verify_mode(asio::ssl::verify_none);
+#endif
 
     } catch (std::exception& e) {
         std::cout << e.what() << std::endl;
@@ -300,6 +302,8 @@ context_ptr websocketClient::on_tls_init(websocketpp::connection_hdl)
     return ctx;
 }
 
+
+#ifdef RCP_VERIFY_SSL
 /// Verify that one of the subject alternative names matches the given hostname
 bool websocketClient::verify_subject_alternative_name(X509 * cert)
 {
@@ -400,6 +404,7 @@ bool websocketClient::verify_certificate(bool preverified, asio::ssl::verify_con
 
     return preverified;
 }
+#endif // RCP_VERIFY_SSL
 
 #endif
 

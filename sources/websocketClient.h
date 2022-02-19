@@ -44,7 +44,7 @@
 #include <websocketpp/client.hpp>
 #include <websocketpp/common/thread.hpp>
 
-#ifndef RCP_PD_NO_SSL
+#ifndef RCP_NO_SSL
 #include <asio/ssl.hpp>
 #include <websocketpp/config/asio_client.hpp>
 typedef websocketpp::client<websocketpp::config::asio_tls_client> ssl_client;
@@ -116,12 +116,15 @@ namespace rcp
         void on_message(connection_hdl hdl, client::message_ptr msg);
         void send(char* data, size_t size);
 
-    #ifndef RCP_PD_NO_SSL
+    #ifndef RCP_NO_SSL
         // SSL
         context_ptr on_tls_init(websocketpp::connection_hdl);
+
+        #ifdef RCP_VERIFY_SSL
         bool verify_subject_alternative_name(X509 * cert);
         bool verify_common_name(X509 * cert);
         bool verify_certificate(bool preverified, asio::ssl::verify_context& ctx);
+        #endif
     #endif
 
     private:
@@ -131,7 +134,7 @@ namespace rcp
         websocketpp::lib::shared_ptr<websocketpp::lib::thread> m_thread;
         client::connection_ptr m_con;
 
-    #ifndef RCP_PD_NO_SSL
+    #ifndef RCP_NO_SSL
         // ssl
         ssl_client m_sslClient;
         websocketpp::lib::shared_ptr<websocketpp::lib::thread> m_sslThread;

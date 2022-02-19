@@ -96,7 +96,7 @@ ifeq ($(NO_SSL),false)
     ldflags += $(OPENSSL_ldflags)
 else
     # turn off ssl
-    cflags += -DRCP_PD_NO_SSL
+    cflags += -DRCP_NO_SSL
 endif
 
 
