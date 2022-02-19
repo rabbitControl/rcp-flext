@@ -43,3 +43,5 @@ DerivedData
 *.zip
 *.dek*
 **deken**
+# ignore Makefile (rename the one you need)
+Makefile
