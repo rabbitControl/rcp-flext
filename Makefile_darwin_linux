@@ -1,8 +1,22 @@
-LIBRARY_NAME = rcp
+# Makefile for Darwin and Linux
+
 # PD or MAX
 EXT_TARGET = PD
 NO_SSL = false
 
+# openssl
+OPENSSL_BASE = ../openssl-1.1.1m
+
+# max/msp
+CYCLING_BASE = ../max-sdk-8.0.3/source/c74support
+MAX_INCLUDE = $(CYCLING_BASE)/max-includes
+MSP_INCLUDE = $(CYCLING_BASE)/msp-includes
+
+# output name
+LIBRARY_NAME = rcp
+
+
+# 
 # rcp external
 RCP_LIB_EXT = $(shell find sources -name *.cpp)
 
@@ -18,69 +32,38 @@ FLEXT_INCLUDE = $(DEPENDENCIES_BASE)/flext/source
 ASIO_INCLUDE = $(DEPENDENCIES_BASE)/asio/asio/include
 WEBSOCKETPP_INCLUDE = $(DEPENDENCIES_BASE)/websocketpp
 
-# openssl
-OPENSSL_BASE = ../openssl-1.1.1m
-COPY_OPENSSL = true
 
-# max/msp
-CYCLING_BASE = ../max-sdk-8.0.3/source/c74support
-MAX_INCLUDE = $(CYCLING_BASE)/max-includes
-MSP_INCLUDE = $(CYCLING_BASE)/msp-includes
+UNAME_S := $(shell uname -s)
+ADDITIONAL_cflags=
+ifeq ($(UNAME_S),Linux)
+    REMOVE_DEAD = -Wl,--gc-sections
+    OPENSSL_INCLUDE = $(OPENSSL_BASE)/include
+    OPENSSL_ldflags = -L$(OPENSSL_BASE) -lssl -lcrypto
+endif
+ifeq ($(UNAME_S),Darwin)
+    
+    REMOVE_DEAD = -dead_strip
 
-
-#$(info $$var is [${OS}])
-
-ifeq ($(OS),Windows_NT)
-    UNAME_S := Windows
-    REMOVE_DEAD =
-    FUNCTION_SECTIONS=
-    FLEXT_CPPFLAGS=
-    ADDITIONAL_cflags=-D__USE_W32_SOCKETS -D_WIN32_WINDOWS=0x0601
-    MINGW_ldflags=-Wl,--enable-auto-import $(PD_BIN)/pd.dll -Lwin32/lib
-    POST_ldflags= -lflext-pd_s.0.6.0
-    MACOS_VERSION_MIN=
-    OPENSSL_INCLUDE=/usr/include
-    OPENSSL_ldflags=
-    ADDITIONAL_ldflags=
-else
-    UNAME_S := $(shell uname -s)
-    MINGW_ldflags=
-    POST_ldflags =
-    ADDITIONAL_cflags=
-    FLEXT_CPPFLAGS=-DFLEXT_INLINE
-    FUNCTION_SECTIONS=-fdata-sections -ffunction-sections
-    ifeq ($(UNAME_S),Linux)
-        REMOVE_DEAD = -Wl,--gc-sections
-        MACOS_VERSION_MIN=
-        OPENSSL_INCLUDE = $(OPENSSL_BASE)/include
-        OPENSSL_ldflags = -L$(OPENSSL_BASE) -lssl -lcrypto
+    #ADDITIONAL_cflags += -isysroot /path/to/MacOSX10.13.sdk
+    # minimum 10.9 for libc++
+    ADDITIONAL_cflags += -mmacosx-version-min=10.9
+    
+    ifeq ($(EXT_TARGET),MAX)
+        ADDITIONAL_cflags += -arch x86_64
+        # attention: this needs multi-arch openssl
+        #ADDITIONAL_cflags += -arch i386
     endif
-    ifeq ($(UNAME_S),Darwin)
-        
-        REMOVE_DEAD = -dead_strip
-
-        #
-        #ADDITIONAL_cflags += -isysroot /path/to/MacOSX10.13.sdk
-        # minimum 10.9 for libc++
-        ADDITIONAL_cflags += -mmacosx-version-min=10.9
-        
-        ifeq ($(EXT_TARGET),MAX)
-            # attention: this needs multi-arch openssl
-            ADDITIONAL_cflags += -arch x86_64
-            ADDITIONAL_cflags += -arch i386
-        endif
-        
-        # ssl installed via e.g. brew
-        #OPENSSL_INCLUDE = /usr/local/opt/openssl@1.1/include
-        #OPENSSL_ldflags = -L/usr/local/opt/openssl@1.1/lib -lssl -lcrypto
-        
-        # ssl in OPENSSL_BASE
-        OPENSSL_INCLUDE = $(OPENSSL_BASE)/include
-        OPENSSL_ldflags = -L$(OPENSSL_BASE) -lssl -lcrypto
-    endif
+    
+    # ssl installed via e.g. brew
+    #OPENSSL_INCLUDE = /usr/local/opt/openssl@1.1/include
+    #OPENSSL_ldflags = -L/usr/local/opt/openssl@1.1/lib -lssl -lcrypto
+    
+    # ssl in OPENSSL_BASE
+    OPENSSL_INCLUDE = $(OPENSSL_BASE)/include
+    OPENSSL_ldflags = -L$(OPENSSL_BASE) -lssl -lcrypto
 endif
 
-FLEXT_CPPFLAGS += -DFLEXT_ATTRIBUTES=1
+FLEXT_CPPFLAGS = -DFLEXT_INLINE -DFLEXT_USE_CMEM -DFLEXT_ATTRIBUTES=1
 ADDITIONAL_cflags += -DLIBRARY_NAME=$(LIBRARY_NAME)
 
 CPPFLAGS = $(FLEXT_CPPFLAGS)
@@ -130,13 +113,8 @@ ifeq ($(EXT_TARGET),PD)
     # include pd-lib-builder
     include pd-lib-builder/Makefile.pdlibbuilder
     
-
-ifeq ($(UNAME_S),Windows)
-    # TODO: windows
-endif
-
 ifeq ($(UNAME_S),Linux)
-    # linux - nothing to do?
+    # linux - nothing to do
 endif
 
 ifeq ($(UNAME_S),Darwin)
@@ -181,10 +159,6 @@ $(ODIR)/%.o: %.cpp $(RCP_LIB_EXT)
 	
 .PHONY: clean all post
 
-ifeq ($(UNAME_S),Windows)
-    # TODO: windows
-endif
-
 ifeq ($(UNAME_S),Darwin)
     # darwin
     
@@ -207,7 +181,6 @@ all: $(OBJ)
 	install_name_tool -id @loader_path/libssl.1.1.dylib $(LIBRARY_NAME).mxo/Contents/MacOS/libssl.1.1.dylib
 	install_name_tool -change /usr/local/lib/libcrypto.1.1.dylib @loader_path/libcrypto.1.1.dylib $(LIBRARY_NAME).mxo/Contents/MacOS/libssl.1.1.dylib
 endif
-	
 
 clean:
 	rm -rf $(ODIR)

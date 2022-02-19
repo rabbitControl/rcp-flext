@@ -1,0 +1,105 @@
+# Makefile for mingw
+
+# PD or MAX
+EXT_TARGET = PD
+NO_SSL = false
+
+# openssl
+OPENSSL_BASE = C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\opt
+
+# max\msp
+CYCLING_BASE = ..\max-sdk-8.0.3\source\c74support
+MAX_INCLUDE = $(CYCLING_BASE)\max-includes
+MSP_INCLUDE = $(CYCLING_BASE)\msp-includes
+
+# Pd
+PD_BIN = "C:\Program Files\Pd\bin"
+
+# output name
+LIBRARY_NAME = rcp
+
+#
+CC=gcc
+CXX=g++
+
+# rcp external
+# TODO: fetch those with a command
+RCP_LIB_EXT = sources\ParameterServerClientBase.cpp sources\SizePrefixer.cpp sources\ParameterClient.cpp sources\RcpFormat.cpp sources\RcpParse.cpp sources\SPPParser.cpp sources\WebsocketClientImpl.cpp sources\WebsocketServerTransporter.cpp sources\PdWebsocketClient.cpp sources\WebsocketServerImpl.cpp sources\RabbitholeServerTransporter.cpp sources\WebsocketClientTransporter.cpp sources\PdServerTransporter.cpp sources\SlipDecoder.cpp sources\PdWebsocketServer.cpp sources\RcpBase.cpp sources\websocketClient.cpp sources\FlextBase.cpp sources\RcpDebug.cpp sources\ParameterServer.cpp sources\SlipEncoder.cpp
+
+# libraries
+DEPENDENCIES_BASE = dependencies
+
+# rcp-c
+# TODO: fetch those with a command
+RCP_SRC = $(DEPENDENCIES_BASE)\rcp-c\rcp_option.c $(DEPENDENCIES_BASE)\rcp-c\rcp_slip.c $(DEPENDENCIES_BASE)\rcp-c\rcp_logging.c $(DEPENDENCIES_BASE)\rcp-c\rcp_client_transporter.c $(DEPENDENCIES_BASE)\rcp-c\rcp_packet.c $(DEPENDENCIES_BASE)\rcp-c\rcp_semver.c $(DEPENDENCIES_BASE)\rcp-c\rcp_manager.c $(DEPENDENCIES_BASE)\rcp-c\rcp_server.c $(DEPENDENCIES_BASE)\rcp-c\rcp_string.c $(DEPENDENCIES_BASE)\rcp-c\rcp_parameter.c $(DEPENDENCIES_BASE)\rcp-c\rcp_server_transporter.c $(DEPENDENCIES_BASE)\rcp-c\rcp_client.c $(DEPENDENCIES_BASE)\rcp-c\rcp_endian.c $(DEPENDENCIES_BASE)\rcp-c\rcp_parser.c $(DEPENDENCIES_BASE)\rcp-c\rcp_typedefinition.c $(DEPENDENCIES_BASE)\rcp-c\rcp_log_transporter.c $(DEPENDENCIES_BASE)\rcp-c\rcp_langstr.c $(DEPENDENCIES_BASE)\rcp-c\rcp_infodata.c $(DEPENDENCIES_BASE)\rcp-c\rcp_sppp.c
+RCP_INCLUDE = $(DEPENDENCIES_BASE)\rcp-c
+
+# 3rd party
+PD_INCLUDE = dependencies\pd
+FLEXT_INCLUDE = $(DEPENDENCIES_BASE)\flext\source
+ASIO_INCLUDE = $(DEPENDENCIES_BASE)\asio\asio\include
+WEBSOCKETPP_INCLUDE = $(DEPENDENCIES_BASE)\websocketpp
+
+ADDITIONAL_cflags = -DLIBRARY_NAME=$(LIBRARY_NAME) -D__USE_W32_SOCKETS -DWIN32_LEAN_AND_MEAN -Wa,-mbig-obj
+MINGW_ldflags = -Wl,--enable-auto-import -lws2_32 -lwsock32
+OPENSSL_INCLUDE = "$(OPENSSL_BASE)\include"
+OPENSSL_ldflags = -L"$(OPENSSL_BASE)\lib" -lssl -lcrypto
+ADDITIONAL_ldflags =
+
+FLEXT_CPPFLAGS = -DFLEXT_INLINE -DFLEXT_USE_CMEM -DFLEXT_ATTRIBUTES=1
+WEBSOCKETPP_CPPFLAGS = -DASIO_STANDALONE -D_WEBSOCKETPP_CPP11_THREAD_
+
+CPPFLAGS = $(FLEXT_CPPFLAGS) $(WEBSOCKETPP_CPPFLAGS)
+cflags = -I$(PD_INCLUDE) -I$(RCP_INCLUDE) -I$(FLEXT_INCLUDE) -I$(ASIO_INCLUDE) -I$(WEBSOCKETPP_INCLUDE) $(ADDITIONAL_cflags)
+
+# use c++11 for STL in ASIO and websocketpp
+CXXFLAGS = -std=c++11
+
+ldflags = $(MINGW_ldflags) $(ADDITIONAL_ldflags)
+
+ifeq ($(NO_SSL),false)
+    cflags += -I$(OPENSSL_INCLUDE)
+    ldflags += $(OPENSSL_ldflags)
+else
+    # turn off ssl
+    cflags += -DRCP_NO_SSL
+endif
+
+
+ifeq ($(EXT_TARGET),PD)
+    CPPFLAGS += -DPD
+    MINGW_ldflags += $(PD_BIN)\pd.dll
+endif
+
+ifeq ($(EXT_TARGET),MAX)
+    cflags += -DMAXMSP
+    cflags += -I$(MAX_INCLUDE) -I$(MSP_INCLUDE)
+    ldflags += -L$(MAX_INCLUDE)\x64 -L$(MSP_INCLUDE)\x64 -lMaxAPI -lMaxAudio
+endif
+
+    ODIR=obj
+    OBJ = $(patsubst %,$(ODIR)\\%, $(RCP_SRC:.c=.o) $(RCP_LIB_EXT:.cpp=.o))
+    #$(info OBJ = ${OBJ})
+
+
+$(ODIR)\\%.o: %.c $(RCP_SRC)
+	$(CC) -c -o $@ $< $(cflags)
+
+$(ODIR)\\%.o: %.cpp $(RCP_LIB_EXT)
+	$(CXX) -c -o $@ $< $(CXXFLAGS) $(CPPFLAGS) $(cflags)
+
+.PHONY: clean all post
+
+
+all: $(OBJ)
+	$(CXX) -shared -o $(LIBRARY_NAME).dll $^ $(ldflags)
+
+$(OBJ): | $(ODIR)
+
+$(ODIR):
+	mkdir $(ODIR)\dependencies\rcp-c
+	mkdir $(ODIR)\sources
+
+clean:
+	rmdir /s /q $(ODIR)
+	del $(LIBRARY_NAME).dll
