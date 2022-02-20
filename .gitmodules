@@ -1,6 +1,3 @@
-[submodule "dependencies/flext"]
-	path = dependencies/flext
-	url = https://github.com/grrrr/flext.git
 [submodule "dependencies/asio"]
 	path = dependencies/asio
 	url = https://github.com/chriskohlhoff/asio.git
@@ -10,3 +7,7 @@
 [submodule "dependencies/rcp-c"]
 	path = dependencies/rcp-c
 	url = https://github.com/rabbitControl/rcp-c.git
+[submodule "dependencies/flext"]
+	path = dependencies/flext
+	url = https://github.com/rabbitControl/flext.git
+	branch = cmem_remove_new_delete
