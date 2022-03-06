@@ -17,6 +17,8 @@ PD_BIN = "C:\Program Files\Pd\bin"
 
 # output name
 LIBRARY_NAME = rcp
+LIBRARY_SUFFIX_PD = dll
+LIBRARY_SUFFIX_MAX = mxe64
 
 #
 CC=gcc
@@ -65,6 +67,7 @@ else
     cflags += -DRCP_NO_SSL
 endif
 
+LIBRARY_SUFFIX = $(LIBRARY_SUFFIX_PD)
 
 ifeq ($(EXT_TARGET),PD)
     CPPFLAGS += -DPD
@@ -72,6 +75,7 @@ ifeq ($(EXT_TARGET),PD)
 endif
 
 ifeq ($(EXT_TARGET),MAX)
+    LIBRARY_SUFFIX = $(LIBRARY_SUFFIX_MAX)
     cflags += -DMAXMSP
     cflags += -I$(MAX_INCLUDE) -I$(MSP_INCLUDE)
     ldflags += -L$(MAX_INCLUDE)\x64 -L$(MSP_INCLUDE)\x64 -lMaxAPI -lMaxAudio
@@ -92,7 +96,7 @@ $(ODIR)\\%.o: %.cpp $(RCP_LIB_EXT)
 
 
 all: $(OBJ)
-	$(CXX) -shared -o $(LIBRARY_NAME).dll $^ $(ldflags)
+	$(CXX) -shared -o $(LIBRARY_NAME).$(LIBRARY_SUFFIX) $^ $(ldflags)
 
 $(OBJ): | $(ODIR)
 
