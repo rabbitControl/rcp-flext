@@ -130,9 +130,7 @@ namespace rcp
     {
         if (m_transporter)
         {
-            const char* str = GetString(d);
-            std::string uri(str);
-            m_transporter->open(uri);
+            m_transporter->open(std::string(GetString(d)));
         }
     }
 

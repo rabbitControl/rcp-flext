@@ -748,8 +748,7 @@ namespace rcp
                 return NULL;
             }
 
-            const char* name = GetString(argv[i]);
-            param = rcp_manager_find_parameter(m_manager, name, last_group);
+            param = rcp_manager_find_parameter(m_manager, GetString(argv[i]), last_group);
             if (param == NULL)
             {
                 // not found

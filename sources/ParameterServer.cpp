@@ -86,7 +86,7 @@ namespace rcp
         {
             if (IsString(argv[i]))
             {
-                if (strcmp(GetString(argv[i]), "-raw") == 0)
+                if (std::string(GetString(argv[i])) == "-raw")
                 {
                     m_raw = true;
                     continue;
@@ -375,13 +375,13 @@ namespace rcp
         {
             if (IsString(argv[i]))
             {
-                const char* t = GetString(argv[i]);
+                std::string t = GetString(argv[i]);
                 if (t[0] == '@')
                 {
                     // set first arguments index
                     if (args_index == argc) args_index = i;
 
-                    if (strcmp(t, "@min") == 0)
+                    if (t == "@min")
                     {
                         i++;
                         if (i >= argc) break;
@@ -396,7 +396,7 @@ namespace rcp
                             error("can not set argument min!");
                         }
                     }
-                    else if (strcmp(t, "@max") == 0)
+                    else if (t == "@max")
                     {
                         i++;
                         if (i >= argc) break;
@@ -411,7 +411,7 @@ namespace rcp
                             error("can not set argument max!");
                         }
                     }
-                    else if (strcmp(t, "@order") == 0)
+                    else if (t == "@order")
                     {
                         i++;
                         if (i >= argc) break;
@@ -426,7 +426,7 @@ namespace rcp
                             error("can not set argument order!");
                         }
                     }
-                    else if (strcmp(t, "@readonly") == 0)
+                    else if (t == "@readonly")
                     {
                         readonly.set(true);
                     }
