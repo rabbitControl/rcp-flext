@@ -9,19 +9,27 @@ Or use the rcp-client in Pd/Max to control parameters on a remote rcp-server.
 [https://rabbitcontrol.cc](https://rabbitcontrol.cc)  
 [https://github.com/rabbitcontrol/](https://rabbitcontrol.cc)
 
+##### Prebuilt Binaries
 
-# Building
+You can find prebuild binaries in the [releases](./releases)
 
-## Requirements
+##Pd
+
+Please find and install the external via deken and load it as library `rcp`
+
+
+## Building the external
 
 In order to build Rabbitcontrol (rcp), a C++11 standard compliant compiler is required.
 
 Clone this repository:
+
 ```
 git clone --recurse-submodules https://github.com/rabbitControl/rcp-flext.git
 ```
 
 ### macOS / Linux
+
 ```
 $ cd rcp-flext
 $ cp Makefile_darwin_linux Makefile
@@ -29,6 +37,7 @@ $ make -j 8
 ```
 
 ### Windows mingw
+
 Rename `Makefile_mingw` to `Makefile` and run make in a mingw-console
 
 ```
