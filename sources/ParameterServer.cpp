@@ -118,7 +118,9 @@ namespace rcp
 		}
 
         m_manager = rcp_server_get_manager(m_server);
-        rcp_server_set_id(m_server, "pd rcp server");
+
+        // set application id
+        rcp_server_set_id(m_server, "pd rcp server ");
 	}
 
 	ParameterServer::~ParameterServer()
