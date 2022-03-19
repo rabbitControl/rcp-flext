@@ -38,6 +38,6 @@
 #ifndef PDRCPVERSION_H
 #define PDRCPVERSION_H
 
-#define RCP_PD_VERSION "1.0.0"
+#define RCP_PD_VERSION "1.0.1"
 
 #endif // PDRCPVERSION_H
