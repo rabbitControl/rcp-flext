@@ -18,6 +18,8 @@ Please find and install the external via deken and load it as library `rcp`
 
 You can find prebuild binaries in [releases](./releases)
 
+For bela please use: [RabbitControl-pd-1.0.1-linux-armv7l.zip](https://github.com/rabbitControl/rcp-flext/releases/download/v1.0.1/RabbitControl-pd-1.0.1-linux-armv7l.zip)
+
 
 ## Building the external
 
