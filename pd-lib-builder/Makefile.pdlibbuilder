@@ -398,7 +398,7 @@ endif
 
 # Let (native or cross-) compiler report target triplet and isolate individual
 # words therein to facilitate later processing.
-target.triplet := $(subst -, ,$(shell $(CC) -dumpmachine))
+target.triplet ?= $(subst -, ,$(shell $(CC) -dumpmachine))
 
 
 #=== operating system ==========================================================

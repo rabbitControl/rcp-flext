@@ -1,0 +1,126 @@
+# Makefile for cross compilation bela
+
+# path to xcBela
+# clone from https://github.com/thetechnobear/xcBela
+XCBELA = ...path/to/xcBela
+
+# NOTE:
+# Compiling rcp with SSL support fails on a Bela Mini due to too less memory.
+#
+# One strategy is to cross-compile the classes, copy the object-files from './sources'
+# to your 'rcp-flext/sources' folder on the bela-board and link on the bela-board running 'make'
+#
+# 
+# To successfully link rcp on your host-machine additional liberaries are needed:
+# Create the following directories:
+# ...path/to/xcBela/sysroot/usr/local/lib
+# ...path/to/xcBela/sysroot/usr/xenomai
+#
+# Then use rsync to get the libraries from the bela-board:
+# rsync -av root@bela.local:/usr/local/lib ...path/to/xcBela/sysroot/usr/local/
+# rsync -av root@bela.local:/usr/xenomai/lib ...path/to/xcBela/sysroot/usr/xenomai/
+
+# ssl
+NO_SSL = false
+
+# output name
+LIBRARY_NAME = rcp
+
+#
+# rcp external
+RCP_LIB_EXT = $(shell find sources -name *.cpp)
+
+# libraries
+DEPENDENCIES_BASE = dependencies
+
+# rcp-c
+RCP_SRC = $(shell find $(DEPENDENCIES_BASE)/rcp-c -name *.c)
+RCP_INCLUDE = $(DEPENDENCIES_BASE)/rcp-c
+
+# 3rd party
+FLEXT_INCLUDE = $(DEPENDENCIES_BASE)/flext/source
+ASIO_INCLUDE = $(DEPENDENCIES_BASE)/asio/asio/include
+WEBSOCKETPP_INCLUDE = $(DEPENDENCIES_BASE)/websocketpp
+
+
+UNAME_S := $(shell uname -s)
+
+FUNCTION_SECTIONS=-fdata-sections -ffunction-sections
+
+ADDITIONAL_cflags = --target=arm-linux-gnueabihf -fPIC
+ADDITIONAL_cflags += --sysroot=$(XCBELA)/sysroot
+ADDITIONAL_cflags += -isysroot $(XCBELA)/sysroot
+ADDITIONAL_cflags += -isystem $(XCBELA)/sysroot/usr/include/c++/6.3.0
+ADDITIONAL_cflags += -isystem $(XCBELA)/sysroot/usr/include/arm-linux-gnueabihf/c++/6.3.0
+ADDITIONAL_cflags += -B$(XCBELA)/sysroot/usr/lib/gcc/arm-linux-gnueabihf/6.3.0
+ADDITIONAL_cflags += --gcc-toolchain=TOOLCHAIN/arm-linux-gnueabihf-binutils
+ADDITIONAL_cflags += -I$(XCBELA)/sysroot/root/Bela
+ADDITIONAL_cflags += -I$(XCBELA)/sysroot/root/Bela/include
+ADDITIONAL_cflags += -I$(XCBELA)/sysroot/usr/xenomai/include
+
+# ld flags
+ADDITIONAL_ldflags = --sysroot=$(XCBELA)/sysroot
+ADDITIONAL_ldflags += -L$(XCBELA)/sysroot/usr/local/lib
+ADDITIONAL_ldflags += -L$(XCBELA)/sysroot/usr/xenomai/lib
+ADDITIONAL_ldflags += -L$(XCBELA)/sysroot/usr/lib/arm-linux-gnueabihf
+ADDITIONAL_ldflags += -L$(XCBELA)/sysroot/usr/lib/gcc/arm-linux-gnueabihf/6.3.0
+ADDITIONAL_ldflags += -lpd
+ADDITIONAL_ldflags += -target arm-linux-gnueabihf -shared -fpic
+
+OPENSSL_ldflags = -L$(XCBELA)/sysroot/usr/lib
+OPENSSL_ldflags += -lssl -lcrypto -lpthread -ldl -lcobalt -lmodechk -lrt
+
+#PLATFORM = arm-linux-gnueabihf
+CC = /usr/local/opt/llvm/bin/clang
+CXX = /usr/local/opt/llvm/bin/clang++
+CPP = /usr/local/opt/llvm/bin/clang++
+
+FLEXT_CPPFLAGS = -DFLEXT_INLINE -DFLEXT_USE_CMEM -DFLEXT_ATTRIBUTES=1
+ADDITIONAL_cflags += -DLIBRARY_NAME=$(LIBRARY_NAME)
+
+CPPFLAGS = $(FLEXT_CPPFLAGS) $(FUNCTION_SECTIONS)
+cflags = -I$(RCP_INCLUDE) -I$(FLEXT_INCLUDE) -I$(ASIO_INCLUDE) -I$(WEBSOCKETPP_INCLUDE) $(ADDITIONAL_cflags)
+
+# use c++11 for STL in ASIO and websocketpp
+CXXFLAGS = -std=c++11
+
+ldflags = $(REMOVE_DEAD) $(ADDITIONAL_ldflags)
+
+ifeq ($(NO_SSL),false)
+    cflags += -I$(OPENSSL_INCLUDE)
+    ldflags += $(OPENSSL_ldflags)
+else
+    # turn off ssl
+    cflags += -DRCP_NO_SSL
+endif
+
+
+#################################
+# PD
+#################################
+CPPFLAGS += -DPD
+
+# using lib-pd-builder
+# figure out compilation targets etc
+
+
+# lib-pd-builder
+lib.name = $(LIBRARY_NAME)
+# NOTE: usign a modified version of Makefile.pflibbuilder
+#       introducing: depcheck.ignore to ignore dependency check
+# ignore depcheck (c++11 not defined in depcheck, so asio fails)
+depcheck.ignore = true
+cxx.flags = $(CXXFLAGS)
+lib.setup.sources = $(RCP_LIB_EXT)
+common.sources = $(RCP_SRC) 
+# compile as lib
+make-lib-executable = yes
+suppress-wunused = yes
+
+PDINCLUDEDIR = $(DEPENDENCIES_BASE)/pd
+
+target.triplet = arm linux gnueabihf
+extension = pd_linux
+
+# include pd-lib-builder
+include pd-lib-builder/Makefile.pdlibbuilder
