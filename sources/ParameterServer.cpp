@@ -452,7 +452,7 @@ namespace rcp
         rcp_parameter* param = rcp_manager_find_parameter(m_manager, label.c_str(), group);
         if (param != NULL)
         {
-            error("parameter '%s' already exists");
+            error("parameter '%s' already exists", label.c_str());
             return;
         }
 
