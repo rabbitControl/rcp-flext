@@ -2,7 +2,7 @@
 
 # path to xcBela
 # clone from https://github.com/thetechnobear/xcBela
-XCBELA = /Users/inx/Documents/_bela/xcBela
+XCBELA = ...path/to/xcBela
 
 # NOTE:
 # Compiling rcp with SSL support fails on a Bela Mini due to too less memory.
