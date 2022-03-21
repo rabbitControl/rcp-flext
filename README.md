@@ -12,13 +12,26 @@ Or use the rcp-client in Pd/Max to control parameters on a remote rcp-server.
 
 ##Pd
 
-Please find and install the external via deken and load it as library `rcp`
+Please find and install the external via deken (Find externals...) and load it as library `rcp`.
+
 
 ## Prebuilt Binaries
 
 You can find prebuild binaries in [releases](./releases)
 
-For bela please use: [RabbitControl-pd-1.0.1-linux-armv7l.zip](https://github.com/rabbitControl/rcp-flext/releases/download/v1.0.1/RabbitControl-pd-1.0.1-linux-armv7l.zip)
+Bela-baord users please use: [RabbitControl-pd-1.0.1-linux-armv7l.zip](https://github.com/rabbitControl/rcp-flext/releases/download/v1.0.1/RabbitControl-pd-1.0.1-linux-armv7l.zip)
+
+## Max
+
+RabbitControl for Max is available as a pre-release version:  
+[RabbitControl-max-1.0.1-macos-win-x86_64-pre-release.zip](https://github.com/rabbitControl/rcp-flext/releases/download/v1.0.1/RabbitControl-max-1.0.1-macos-win-x86_64-pre-release.zip)
+
+To use it extract the zip-file to e.g.:  
+`~/Max 8/Packages/`
+
+###### known issues (Max only):
+- min/max for number values are not working properly
+- help-patches don't open -> use RabbitControl Overview.maxpat or open the help-patches manually
 
 
 ## Building the external
