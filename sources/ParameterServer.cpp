@@ -164,16 +164,20 @@ namespace rcp
 		{
             std::vector<char> data(argc);
 			int offset = 0;
+            int value = -1;
 
 			for (int i=0; i<argc; i++)
 			{
-				if (IsFloat(argv[i]))
+				if (CanbeInt(argv[i]))
 				{
-					data[i-offset] = GetFloat(argv[i]);
-				}
-				else if (IsInt(argv[i]))
-				{
-					data[i-offset] = GetInt(argv[i]);
+                    value = GetAInt(argv[i], -1);
+                    if (value < 0 || value > 255)
+                    {
+                        error("invalid data in list");
+                        return;
+                    }
+
+					data[i-offset] = value;
 				}
 				else
 				{
@@ -310,7 +314,6 @@ namespace rcp
         }
     }
 
-
     // parameter
     void ParameterServer::exposeParameter(int argc, t_atom* argv)
     {
@@ -383,6 +386,7 @@ namespace rcp
                     // set first arguments index
                     if (args_index == argc) args_index = i;
 
+
                     if (t == "@min")
                     {
                         i++;
@@ -390,7 +394,7 @@ namespace rcp
 
                         if (CanbeFloat(argv[i]))
                         {
-                            min.set(GetFloat(argv[i]));
+                            min.set(GetAFloat(argv[i]));
                         }
                         else
                         {
@@ -405,7 +409,7 @@ namespace rcp
 
                         if (CanbeFloat(argv[i]))
                         {
-                            max.set(GetFloat(argv[i]));
+                            max.set(GetAFloat(argv[i]));
                         }
                         else
                         {
@@ -420,8 +424,8 @@ namespace rcp
 
                         if (CanbeInt(argv[i]))
                         {
-                            order.set(GetInt(argv[i]));
-                        }
+                            order.set(GetAInt(argv[i]));
+                        }                        
                         else
                         {
                             // error
@@ -435,7 +439,6 @@ namespace rcp
                 }
             }
         }
-
 
         // create necessary groups
         std::string label;
@@ -625,7 +628,7 @@ namespace rcp
         rcp_parameter* parameter = getParameter(argc-1, argv);
         if (parameter)
         {
-            rcp_parameter_set_readonly(parameter, GetInt(argv[argc-1]) > 0);
+            rcp_parameter_set_readonly(parameter, GetAInt(argv[argc-1]) > 0);
             rcp_server_update(m_server);
         }
     }
@@ -641,7 +644,7 @@ namespace rcp
         rcp_parameter* parameter = getParameter(argc-1, argv);
         if (parameter)
         {
-            rcp_parameter_set_order(parameter, GetInt(argv[argc-1]));
+            rcp_parameter_set_order(parameter, GetAInt(argv[argc-1]));
             rcp_server_update(m_server);
         }
     }
@@ -656,7 +659,7 @@ namespace rcp
             {
                 if (CanbeFloat(argv[argc-1]))
                 {
-                    rcp_parameter_set_min_float(RCP_VALUE_PARAMETER(parameter), GetFloat(argv[argc-1]));
+                    rcp_parameter_set_min_float(RCP_VALUE_PARAMETER(parameter), GetAFloat(argv[argc-1]));
                     rcp_server_update(m_server);
                 }
             }
@@ -664,7 +667,7 @@ namespace rcp
             {
                 if (CanbeInt(argv[argc-1]))
                 {
-                    rcp_parameter_set_min_int32(RCP_VALUE_PARAMETER(parameter), GetInt(argv[argc-1]));
+                    rcp_parameter_set_min_int32(RCP_VALUE_PARAMETER(parameter), GetAInt(argv[argc-1]));
                     rcp_server_update(m_server);
                 }
             }
@@ -681,7 +684,7 @@ namespace rcp
             {
                 if (CanbeFloat(argv[argc-1]))
                 {
-                    rcp_parameter_set_max_float(RCP_VALUE_PARAMETER(parameter), GetFloat(argv[argc-1]));
+                    rcp_parameter_set_max_float(RCP_VALUE_PARAMETER(parameter), GetAFloat(argv[argc-1]));
                     rcp_server_update(m_server);
                 }
             }
@@ -689,7 +692,7 @@ namespace rcp
             {
                 if (CanbeInt(argv[argc-1]))
                 {
-                    rcp_parameter_set_max_int32(RCP_VALUE_PARAMETER(parameter), GetInt(argv[argc-1]));
+                    rcp_parameter_set_max_int32(RCP_VALUE_PARAMETER(parameter), GetAInt(argv[argc-1]));
                     rcp_server_update(m_server);
                 }
             }
@@ -699,8 +702,8 @@ namespace rcp
     void ParameterServer::parameterSetMinMax(int argc, t_atom* argv)
     {
         if (argc < 3 ||
-                !CanbeFloat(argv[argc-2]) ||
-                !CanbeFloat(argv[argc-1]))
+                !IsFloat(argv[argc-2]) ||
+                !IsFloat(argv[argc-1]))
         {
             error("invalid data for setting min and max");
             return;
@@ -712,14 +715,14 @@ namespace rcp
             rcp_datatype type = RCP_TYPE_ID(parameter);
             if (type == DATATYPE_FLOAT32)
             {
-                rcp_parameter_set_min_float(RCP_VALUE_PARAMETER(parameter), GetFloat(argv[argc-2]));
-                rcp_parameter_set_max_float(RCP_VALUE_PARAMETER(parameter), GetFloat(argv[argc-1]));
+                rcp_parameter_set_min_float(RCP_VALUE_PARAMETER(parameter), GetAFloat(argv[argc-2]));
+                rcp_parameter_set_max_float(RCP_VALUE_PARAMETER(parameter), GetAFloat(argv[argc-1]));
                 rcp_server_update(m_server);
             }
             else if (type == DATATYPE_INT32)
             {
-                rcp_parameter_set_min_int32(RCP_VALUE_PARAMETER(parameter), GetInt(argv[argc-2]));
-                rcp_parameter_set_max_int32(RCP_VALUE_PARAMETER(parameter), GetInt(argv[argc-1]));
+                rcp_parameter_set_min_int32(RCP_VALUE_PARAMETER(parameter), GetAInt(argv[argc-2]));
+                rcp_parameter_set_max_int32(RCP_VALUE_PARAMETER(parameter), GetAInt(argv[argc-1]));
                 rcp_server_update(m_server);
             }
         }

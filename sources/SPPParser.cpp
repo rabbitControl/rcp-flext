@@ -67,9 +67,9 @@ namespace rcp
 
         for (int i=0; i<argc; i++)
         {
-            if ((IsInt(argv[i]) || IsFloat(argv[i])))
+            if (CanbeInt(argv[i]))
             {
-                buffer_size = GetInt(argv[i]);
+                buffer_size = GetAInt(argv[i], 1024);
             }
         }
 
@@ -97,22 +97,11 @@ namespace rcp
 
         for (int i=0; i<argc; i++)
         {
-            if (IsFloat(argv[i]))
+            if (CanbeInt(argv[i]))
             {
-                int id = (int)GetFloat(argv[i]);
-                if (id < 256 && id >= 0)
-                {
-                    data[i-offset] = id;
-                }
-                else
-                {
-                    offset++;
-                }
-            }
-            else if (IsInt(argv[i]))
-            {
-                int id = (int)GetInt(argv[i]);
-                if (id < 256 && id >= 0)
+                int id = (int)GetAInt(argv[i], -1);
+                if (id >= 0 &&
+                        id < 256)
                 {
                     data[i-offset] = id;
                 }

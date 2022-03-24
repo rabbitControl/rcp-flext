@@ -107,7 +107,7 @@ namespace rcp
         {
             if (CanbeInt(argv[i]))
             {
-                unsigned int di = GetInt(argv[i]);
+                unsigned int di = GetAInt(argv[i], 1000);
                 if (di > 255)
                 {
                     error("invalid data in packet");

@@ -99,9 +99,9 @@ namespace rcp
             }
             else if (type == DATATYPE_FLOAT32)
             {
-                if (flext::IsFloat(atom))
+                if (flext::CanbeFloat(atom))
                 {
-                    rcp_parameter_set_value_float(RCP_VALUE_PARAMETER(param), flext::GetFloat(atom));
+                    rcp_parameter_set_value_float(RCP_VALUE_PARAMETER(param), flext::GetAFloat(atom));
                     was_set = true;
                 }
             }
@@ -720,7 +720,7 @@ namespace rcp
             return GetString(a);
         }
 
-        if (IsInt(a) || CanbeInt(a))
+        if (IsInt(a))
         {
             int i = GetInt(a);
             return std::to_string(i);
@@ -728,7 +728,7 @@ namespace rcp
 
         if (IsFloat(a))
         {
-            float f = GetFloat(a);
+            float f = GetAFloat(a);
             return std::to_string(f);
         }
 

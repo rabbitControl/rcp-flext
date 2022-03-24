@@ -88,7 +88,7 @@ namespace rcp
                 throw std::runtime_error("id needs to be integer");
             }
 
-            id = GetInt(argv[0]);
+            id = GetAInt(argv[0]);
         }
 
         // check limits
