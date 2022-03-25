@@ -23,10 +23,9 @@ Bela-baord users please use: [RabbitControl-pd-1.0.1-linux-armv7l.zip](https://g
 
 ## Max
 
-RabbitControl for Max is available as a pre-release version:  
-[RabbitControl-max-1.0.1-macos-win-x86_64-beta.zip](https://github.com/rabbitControl/rcp-flext/releases/download/v1.0.1/RabbitControl-max-1.0.1-macos-win-x86_64-beta.zip)
+Until the package is available in the package-manager RabbitControl is available as a pre-built package available in [releases](./releases)
 
-To use it extract the zip-file to e.g.:  
+To use the package extract the zip-file to e.g.:  
 `~/Max 8/Packages/`
 
 ###### known issues (Max only):
