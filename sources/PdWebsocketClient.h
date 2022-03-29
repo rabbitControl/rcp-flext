@@ -53,7 +53,7 @@ namespace rcp
         PdWebsocketClient();
 
     public:
-        // websocketClient
+        // IWebsocketClientListener
         void connected() override;
         void disconnected() override;
         void received(char* data, size_t size) override;

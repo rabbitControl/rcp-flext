@@ -58,7 +58,7 @@ namespace rcp
         ParameterServer* pdServer() const;
 
     public:
-        // implement IPdServerTransporter
+        // IServerTransporter
         rcp_server_transporter* transporter() const override;
         virtual void bind(uint16_t /*port*/) override {}
         virtual void unbind() override {}

@@ -64,7 +64,7 @@ namespace rcp
         std::string uri() const { return m_uri; }
 
     public:
-        // implement IPdServerTransporter
+        // IServerTransporter
         rcp_server_transporter* transporter() const override;
         void bind(uint16_t port) override;
         void unbind() override;
@@ -72,11 +72,11 @@ namespace rcp
         bool isListening() const override { return true; }
 
     public:
-        // implement websocketClient
+        // websocketClient
         void connected() override;
         void disconnected() override;
         void received(char* data, size_t size) override;
-        void received(const std::string& msg) override {}
+        void received(const std::string& /*msg*/) override {}
 
         // websocketClient overrides
         void connect(const std::string& uri, const std::string& subprotocol = "") override;

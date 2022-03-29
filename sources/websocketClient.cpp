@@ -91,9 +91,15 @@ websocketClient::~websocketClient()
 
     disconnect();
 
-    m_thread->join();
+    if (m_thread)
+    {
+        m_thread->join();
+    }
 #ifndef RCP_NO_SSL
-    m_sslThread->join();
+    if (m_sslThread)
+    {
+        m_sslThread->join();
+    }
 #endif
 }
 

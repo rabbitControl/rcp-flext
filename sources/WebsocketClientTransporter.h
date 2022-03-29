@@ -56,7 +56,7 @@ namespace rcp
         WebsocketClientTransporter(IWebsocketClientListener* listener);
         ~WebsocketClientTransporter();
 
-        // implement IClientTransporter
+        // IClientTransporter
         rcp_client_transporter* transporter() const override;
         void open(const std::string& address) override;
         void close() override;
