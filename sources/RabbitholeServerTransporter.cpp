@@ -84,7 +84,6 @@ namespace rcp
         // unbind
         m_doTryConnect = false;
         m_tryConnectTimer.Reset();
-        disconnect();
 
         if (m_transporter)
         {
