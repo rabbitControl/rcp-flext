@@ -110,11 +110,6 @@ namespace rcp
             FLEXT_ADDMETHOD(1, data_list);
 
             m_transporter = std::make_shared<PdServerTransporter>(this);
-
-            if (m_transporter)
-            {
-                rcp_server_add_transporter(m_server, m_transporter->transporter());
-            }
 		}
 
         m_manager = rcp_server_get_manager(m_server);
@@ -249,9 +244,7 @@ namespace rcp
             if (new_transporter)
             {
                 // set new transporter
-                m_transporter = new_transporter;
-                rcp_server_add_transporter(m_server, m_transporter->transporter());
-
+                m_transporter = new_transporter;                
                 m_transporter->bind(p);
 
                 // reset connected clients
@@ -279,15 +272,10 @@ namespace rcp
                 !m_rabbitholeTransporter)
         {
             m_rabbitholeTransporter = std::make_shared<RabbitHoleServerTransporter>(m_server);
-
-            if (m_rabbitholeTransporter)
-            {
-                rcp_server_add_transporter(m_server, m_rabbitholeTransporter->transporter());
-            }
         }
 
         if (m_rabbitholeTransporter)
-        {
+        {            
             m_rabbitholeTransporter->connect(std::string(GetAString(uri)));
         }
     }

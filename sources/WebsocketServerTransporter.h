@@ -47,13 +47,13 @@ typedef struct _pd_websocket_server_transporter pd_websocket_server_transporter;
 
 namespace rcp
 {
-
     class ParameterServer;
 
-    class WebsocketServerTransporter : public IServerTransporter, public websocketServer
+    class WebsocketServerTransporter
+            : public IServerTransporter
+            , public websocketServer
     {
     public:
-        WebsocketServerTransporter(IWebsocketServerListener* listener);
         WebsocketServerTransporter(rcp_server* server, IWebsocketServerListener* listener);
         ~WebsocketServerTransporter();
 
@@ -74,10 +74,6 @@ namespace rcp
         void disconnected(void* client) override;
         void received(char* data, size_t size, void* id) override;
         void socketerror(const char* reason) override;
-
-
-    private:
-        void init();
 
     private:
         rcp_server* m_rcpServer;

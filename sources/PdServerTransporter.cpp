@@ -38,6 +38,7 @@
 #include "PdServerTransporter.h"
 
 #include <rcp_memory.h>
+#include <rcp_server.h>
 
 #include "ParameterServer.h"
 
@@ -56,6 +57,11 @@ namespace rcp
             rcp_server_transporter_setup(RCP_TRANSPORTER(m_transporter),
                                      pd_server_transporter_sendToOne,
                                      pd_server_transporter_sendToAll);
+
+            if (m_pdServer)
+            {
+                rcp_server_add_transporter(m_pdServer->server(), RCP_TRANSPORTER(m_transporter));
+            }
         }
     }
 
@@ -63,6 +69,11 @@ namespace rcp
     {
         if (m_transporter)
         {
+            if (m_pdServer)
+            {
+                rcp_server_remove_transporter(m_pdServer->server(), &m_transporter->transporter);
+            }
+
             RCP_FREE(m_transporter);
         }
     }

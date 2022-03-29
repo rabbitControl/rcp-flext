@@ -43,23 +43,24 @@
 
 namespace rcp
 {
-
-    WebsocketServerTransporter::WebsocketServerTransporter(IWebsocketServerListener* listener)
-        : websocketServer()
-        , m_rcpServer(nullptr)
-        , m_transporter(nullptr)
-        , m_listener(listener)
-    {
-        init();
-    }
-
     WebsocketServerTransporter::WebsocketServerTransporter(rcp_server* server, IWebsocketServerListener* listener)
         : websocketServer()
         , m_rcpServer(server)
         , m_transporter(nullptr)
         , m_listener(listener)
     {
-        init();
+        m_transporter = (pd_websocket_server_transporter*)RCP_CALLOC(1, sizeof (pd_websocket_server_transporter));
+
+        if (m_transporter)
+        {
+            m_transporter->pdST = this;
+
+            rcp_server_transporter_setup(RCP_TRANSPORTER(m_transporter),
+                                     pd_websocket_server_transporter_sendToOne,
+                                     pd_websocket_server_transporter_sendToAll);
+
+            rcp_server_add_transporter(m_rcpServer, RCP_TRANSPORTER(m_transporter));
+        }
     }
 
     WebsocketServerTransporter::~WebsocketServerTransporter()
@@ -67,34 +68,10 @@ namespace rcp
         if (m_transporter)
         {
             // remove transporter from rcp_Server
-            if (m_rcpServer)
-            {
-                rcp_server_remove_transporter(m_rcpServer, RCP_TRANSPORTER(m_transporter));
-            }
+            rcp_server_remove_transporter(m_rcpServer, RCP_TRANSPORTER(m_transporter));
 
             RCP_FREE(m_transporter);
             m_transporter = nullptr;
-        }
-    }
-
-
-    void WebsocketServerTransporter::init()
-    {
-        if (m_transporter == nullptr)
-        {
-            m_transporter = (pd_websocket_server_transporter*)RCP_CALLOC(1, sizeof (pd_websocket_server_transporter));
-
-            if (m_transporter)
-            {
-                m_transporter->pdST = this;
-
-                rcp_server_transporter_setup(RCP_TRANSPORTER(m_transporter),
-                                         pd_websocket_server_transporter_sendToOne,
-                                         pd_websocket_server_transporter_sendToAll);
-            }
-        }
-        else {
-            // transporter already created!
         }
     }
 

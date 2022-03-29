@@ -71,6 +71,8 @@ namespace rcp
             rcp_server_transporter_setup(RCP_TRANSPORTER(m_transporter),
                                      pd_rabbithole_server_transporter_sendToOne,
                                      pd_rabbithole_server_transporter_sendToAll);
+
+            rcp_server_add_transporter(m_rcpServer, RCP_TRANSPORTER(m_transporter));
         }
 
 
@@ -86,10 +88,7 @@ namespace rcp
 
         if (m_transporter)
         {
-            if (m_rcpServer)
-            {
-                rcp_server_remove_transporter(m_rcpServer, RCP_TRANSPORTER(m_transporter));
-            }
+            rcp_server_remove_transporter(m_rcpServer, RCP_TRANSPORTER(m_transporter));
 
             RCP_FREE(m_transporter);
             m_transporter = nullptr;
