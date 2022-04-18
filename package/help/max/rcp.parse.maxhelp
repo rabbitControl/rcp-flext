@@ -373,7 +373,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 64.0, 84.0, 98.0, 27.0 ],
-					"text" : "rcp.format"
+					"text" : "rcp.parse"
 				}
 
 			}
