@@ -5,10 +5,10 @@ EXT_TARGET = PD
 NO_SSL = false
 
 # openssl
-OPENSSL_BASE = ../openssl-1.1.1m
+OPENSSL_BASE = ../openssl-1.1.1n
 
 # max/msp
-CYCLING_BASE = ../max-sdk-8.0.3/source/c74support
+CYCLING_BASE = ../max-sdk-8.2/source/max-sdk-base/c74support
 MAX_INCLUDE = $(CYCLING_BASE)/max-includes
 MSP_INCLUDE = $(CYCLING_BASE)/msp-includes
 
@@ -45,16 +45,22 @@ ifeq ($(UNAME_S),Darwin)
     REMOVE_DEAD = -dead_strip
 
     #ADDITIONAL_cflags += -isysroot /path/to/MacOSX10.13.sdk
+    ADDITIONAL_cflags += -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
     # minimum 10.9 for libc++
-    ADDITIONAL_cflags += -mmacosx-version-min=10.9
+    ADDITIONAL_cflags += -mmacosx-version-min=10.15
+    # compile for both 64bit and M1 (needs correct isysroot)
+    # NOTE: this needs universal openssl
+    ADDITIONAL_cflags += -arch x86_64 -arch arm64
+    
+    # use same flags for linking
+    ADDITIONAL_ldflags += ${ADDITIONAL_cflags}
     
     ifeq ($(EXT_TARGET),MAX)
-        ADDITIONAL_cflags += -arch x86_64
-        # attention: this needs multi-arch openssl
+        # NOTE: this needs multi-arch openssl
         #ADDITIONAL_cflags += -arch i386
     endif
     
-    # ssl installed via e.g. brew
+    # ssl installed via e.g. homebrew
     #OPENSSL_INCLUDE = /usr/local/opt/openssl@1.1/include
     #OPENSSL_ldflags = -L/usr/local/opt/openssl@1.1/lib -lssl -lcrypto
     
@@ -125,10 +131,13 @@ post:
 	install_name_tool -id @loader_path/libcrypto.1.1.dylib libcrypto.1.1.dylib
 	install_name_tool -id @loader_path/libssl.1.1.dylib libssl.1.1.dylib
 	install_name_tool -change /usr/local/lib/libcrypto.1.1.dylib @loader_path/libcrypto.1.1.dylib libssl.1.1.dylib
+	install_name_tool -change @rpath/libcrypto.1.1.dylib @loader_path/libcrypto.1.1.dylib libssl.1.1.dylib
 	
 	file $(LIBRARY_NAME).pd_darwin
 	install_name_tool -change /usr/local/lib/libcrypto.1.1.dylib @loader_path/libcrypto.1.1.dylib $(LIBRARY_NAME).pd_darwin
 	install_name_tool -change /usr/local/lib/libssl.1.1.dylib @loader_path/libssl.1.1.dylib $(LIBRARY_NAME).pd_darwin
+	install_name_tool -change @rpath/libcrypto.1.1.dylib @loader_path/libcrypto.1.1.dylib $(LIBRARY_NAME).pd_darwin
+	install_name_tool -change @rpath/libssl.1.1.dylib @loader_path/libssl.1.1.dylib $(LIBRARY_NAME).pd_darwin
 endif
 endif
 
@@ -168,6 +177,9 @@ all: $(OBJ)
 	# post process
 	install_name_tool -change /usr/local/lib/libcrypto.1.1.dylib @loader_path/libcrypto.1.1.dylib $(LIBRARY_NAME)
 	install_name_tool -change /usr/local/lib/libssl.1.1.dylib @loader_path/libssl.1.1.dylib $(LIBRARY_NAME)
+	install_name_tool -change @rpath/libcrypto.1.1.dylib @loader_path/libcrypto.1.1.dylib $(LIBRARY_NAME)
+	install_name_tool -change @rpath/libssl.1.1.dylib @loader_path/libssl.1.1.dylib $(LIBRARY_NAME)
+	
 	
 	rm -rf $(LIBRARY_NAME).mxo
 	cp -r package/template.mxo $(LIBRARY_NAME).mxo
@@ -180,6 +192,7 @@ all: $(OBJ)
 	install_name_tool -id @loader_path/libcrypto.1.1.dylib $(LIBRARY_NAME).mxo/Contents/MacOS/libcrypto.1.1.dylib
 	install_name_tool -id @loader_path/libssl.1.1.dylib $(LIBRARY_NAME).mxo/Contents/MacOS/libssl.1.1.dylib
 	install_name_tool -change /usr/local/lib/libcrypto.1.1.dylib @loader_path/libcrypto.1.1.dylib $(LIBRARY_NAME).mxo/Contents/MacOS/libssl.1.1.dylib
+	install_name_tool -change @rpath/libcrypto.1.1.dylib @loader_path/libcrypto.1.1.dylib $(LIBRARY_NAME).mxo/Contents/MacOS/libssl.1.1.dylib
 endif
 
 clean:
