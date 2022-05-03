@@ -78,7 +78,8 @@ namespace rcp
     public:
         //
         virtual void connected() = 0;
-        virtual void disconnected() = 0;
+        virtual void failed(uint16_t code) = 0;
+        virtual void disconnected(uint16_t code) = 0;
         virtual void received(char* data, size_t size) = 0;
         virtual void received(const std::string& msg) = 0;
     };
@@ -98,20 +99,20 @@ namespace rcp
             connected();
         }
 
-        void on_fail(websocketpp::connection_hdl /*hdl*/)
+        void on_fail(websocketpp::connection_hdl hdl)
         {
-            disconnected();
+            failed(uint16_t(_getResponseCode(hdl)));
         }
 
-        void on_close(websocketpp::connection_hdl /*hdl*/)
+        void on_close(websocketpp::connection_hdl hdl)
         {
-            disconnected();
+            disconnected(uint16_t(_getCloseCode(hdl)));
         }
 
         bool isOpen() const;
 
         virtual void connect(const std::string& uri, const std::string& subprotocol = "");
-        void disconnect();
+        virtual void disconnect();
 
         void on_message(connection_hdl hdl, client::message_ptr msg);
         void send(char* data, size_t size);
@@ -127,6 +128,9 @@ namespace rcp
         #endif
     #endif
 
+    private:
+        websocketpp::http::status_code::value _getResponseCode(websocketpp::connection_hdl hdl);
+        websocketpp::close::status::value _getCloseCode(websocketpp::connection_hdl hdl);
     private:
         std::string m_hostname;
 

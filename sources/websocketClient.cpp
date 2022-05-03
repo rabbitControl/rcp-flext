@@ -414,4 +414,49 @@ bool websocketClient::verify_certificate(bool preverified, asio::ssl::verify_con
 
 #endif
 
+
+// private methods
+
+websocketpp::http::status_code::value
+websocketClient::_getResponseCode(websocketpp::connection_hdl hdl)
+{
+    client::connection_ptr p = m_client.get_con_from_hdl(hdl);
+    if (p && p == m_con)
+    {
+        return p->get_response_code();
+    }
+
+#ifndef RCP_NO_SSL
+    ssl_client::connection_ptr pp = m_sslClient.get_con_from_hdl(hdl);
+    if (pp && pp == m_sslCon)
+    {
+        return pp->get_response_code();
+    }
+#endif
+
+    return websocketpp::http::status_code::value::uninitialized;
+}
+
+
+websocketpp::close::status::value
+websocketClient::_getCloseCode(websocketpp::connection_hdl hdl)
+{
+    client::connection_ptr p = m_client.get_con_from_hdl(hdl);
+    if (p && p == m_con)
+    {
+        return p->get_remote_close_code();
+    }
+
+#ifndef RCP_NO_SSL
+    ssl_client::connection_ptr pp = m_sslClient.get_con_from_hdl(hdl);
+    if (pp && pp == m_sslCon)
+    {
+        return pp->get_remote_close_code();
+    }
+#endif
+
+    return 0;
+}
+
+
 }

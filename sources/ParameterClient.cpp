@@ -268,7 +268,12 @@ namespace rcp
         ToOutInt(2, 1);
     }
 
-    void ParameterClient::disconnected()
+    void ParameterClient::failed(uint16_t code)
+    {
+        ToOutInt(2, 0);
+    }
+
+    void ParameterClient::disconnected(uint16_t code)
     {
         // NOTE: this should be called after client_transporter_call_disconnected_cb
         // client manager was re-created: get the new one

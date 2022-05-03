@@ -74,7 +74,8 @@ namespace rcp
     public:
         // websocketClient
         void connected() override;
-        void disconnected() override;
+        void failed(uint16_t code) override;
+        void disconnected(uint16_t code) override;
         void received(char* data, size_t size) override;
         void received(const std::string& /*msg*/) override {}
 
@@ -88,6 +89,7 @@ namespace rcp
         rcp_server* m_rcpServer;
         pd_rabbithole_server_transporter* m_transporter;
         std::string m_uri;
+        bool m_oneTimeError{true};
 
         flext::Timer m_tryConnectTimer;
         int m_connectInterval;

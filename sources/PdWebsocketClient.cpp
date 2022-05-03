@@ -70,7 +70,12 @@ namespace rcp
         ToOutInt(2, 1);
     }
 
-    void PdWebsocketClient::disconnected()
+    void PdWebsocketClient::failed(uint16_t /*code*/)
+    {
+        ToOutInt(2, 0);
+    }
+
+    void PdWebsocketClient::disconnected(uint16_t /*code*/)
     {
         ToOutInt(2, 0);
     }

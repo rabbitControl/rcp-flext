@@ -81,8 +81,8 @@ namespace rcp
 
     RabbitHoleServerTransporter::~RabbitHoleServerTransporter()
     {
-        // unbind
         m_doTryConnect = false;
+        m_oneTimeError = false;
         m_tryConnectTimer.Reset();
 
         if (m_transporter)
@@ -123,10 +123,58 @@ namespace rcp
     // websocketClient
     void RabbitHoleServerTransporter::connected()
     {
+        m_oneTimeError = true;
     }
 
-    void RabbitHoleServerTransporter::disconnected()
+    void RabbitHoleServerTransporter::failed(uint16_t code)
     {
+        /*
+         rabbithole response codes:
+         400: BAD_REQUEST: no tunnel name
+         412: PRECONDITION_FAILED: tunnel name too short
+         423: LOCKED: tunnel name already taken (another server is already connected)
+        */
+
+        if (code != 200 &&
+                m_oneTimeError)
+        {
+            m_oneTimeError = false;
+            switch (code)
+            {
+            case 400:
+                error("Rabbithole: no tunnel name provided");
+                break;
+            case 412:
+                error("Rabbithole: tunnel name too short");
+                break;
+            case 423:
+                error("Rabbithole: tunnel already in use - please use a different public tunnel or consider using a private tunnel.");
+                break;
+            default:
+                std::cout << "unhandled fail code: " << code << std::endl;
+                break;
+            }
+        }
+
+        if (m_doTryConnect)
+        {
+            tryConnect();
+        }
+    }
+
+    void RabbitHoleServerTransporter::disconnected(uint16_t code)
+    {
+        /*
+         rabbithole close codes:
+         4500: SESSION_NOT_RELIABLE: public tunnel are considered not reliable - sessions close after a certain time
+        */
+
+        if (code == 4500 &&
+                m_uri.find("/public/rcpserver/connect") != std::string::npos)
+        {
+            post("Rabbithole: public tunnel closed - please reconnect your client or use a private tunnel");
+        }
+
         if (m_doTryConnect)
         {
             tryConnect();
@@ -167,6 +215,7 @@ namespace rcp
         if (m_uri.find("ws", 0) == 0)
         {
             m_doTryConnect = true;
+            m_oneTimeError = true;
             websocketClient::connect(m_uri, subprotocol);
         }
     }

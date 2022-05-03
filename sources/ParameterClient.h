@@ -61,7 +61,8 @@ namespace rcp
     public:
         // IWebsocketClientListener
         void connected() override;
-        void disconnected() override;
+        void failed(uint16_t code) override;
+        void disconnected(uint16_t code) override;
         void received(char* /*data*/, size_t /*size*/) override {}
         void received(const std::string& /*msg*/) override {}
 

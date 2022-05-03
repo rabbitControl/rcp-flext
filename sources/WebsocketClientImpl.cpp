@@ -18,11 +18,19 @@ namespace rcp
         }
     }
 
-    void WebsocketClientImpl::disconnected()
+    void WebsocketClientImpl::failed(uint16_t code)
     {
         if (m_listener)
         {
-            m_listener->disconnected();
+            m_listener->failed(code);
+        }
+    }
+
+    void WebsocketClientImpl::disconnected(uint16_t code)
+    {
+        if (m_listener)
+        {
+            m_listener->disconnected(code);
         }
     }
 

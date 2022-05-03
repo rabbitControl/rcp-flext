@@ -103,7 +103,7 @@ namespace rcp
         }
     }
 
-    void WebsocketClientTransporter::disconnected()
+    void WebsocketClientTransporter::failed(uint16_t code)
     {
         if (m_transporter)
         {
@@ -113,7 +113,21 @@ namespace rcp
 
         if (m_listener)
         {
-            m_listener->disconnected();
+            m_listener->failed(code);
+        }
+    }
+
+    void WebsocketClientTransporter::disconnected(uint16_t code)
+    {
+        if (m_transporter)
+        {
+            // NOTE: this re-creates the client manager
+            rcp_client_transporter_call_disconnected_cb(RCP_TRANSPORTER(m_transporter));
+        }
+
+        if (m_listener)
+        {
+            m_listener->disconnected(code);
         }
     }
 
