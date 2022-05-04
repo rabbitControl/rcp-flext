@@ -131,6 +131,8 @@ namespace rcp
     private:
         websocketpp::http::status_code::value _getResponseCode(websocketpp::connection_hdl hdl);
         websocketpp::close::status::value _getCloseCode(websocketpp::connection_hdl hdl);
+        void _printCodes(websocketpp::connection_hdl hdl);
+
     private:
         std::string m_hostname;
 

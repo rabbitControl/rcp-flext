@@ -459,4 +459,43 @@ websocketClient::_getCloseCode(websocketpp::connection_hdl hdl)
 }
 
 
+void
+websocketClient::_printCodes(websocketpp::connection_hdl hdl)
+{
+    client::connection_ptr p = m_client.get_con_from_hdl(hdl);
+    if (p && p == m_con)
+    {
+        websocketpp::http::status_code::value rc = p->get_response_code();
+        std::cout << "non-ssl response code: " << rc << std::endl;
+
+        websocketpp::close::status::value local_code = p->get_local_close_code();
+        websocketpp::close::status::value remote_code = p->get_remote_close_code();
+        std::cout << "non-ssl close code: " << remote_code << " local: " << local_code << std::endl;
+    }
+#ifndef RCP_NO_SSL
+
+    ssl_client::connection_ptr pp = m_sslClient.get_con_from_hdl(hdl);
+    if (pp && pp == m_sslCon)
+    {
+        websocketpp::http::status_code::value rc = pp->get_response_code();
+        std::cout << "ssl response code: " << rc << std::endl;
+
+        websocketpp::close::status::value local_code = pp->get_local_close_code();
+        websocketpp::close::status::value remote_code = pp->get_remote_close_code();
+        std::cout << "ssl close code remote: " << remote_code << " local: " << local_code << std::endl;
+    }
+    else
+    {
+        std::cout << "connetion pointer not sslCon!" << std::endl;
+    }
+
+#else
+    // no ssl
+    else
+    {
+        std::cout << "connetion pointer not con!" << std::endl;
+    }
+#endif
+}
+
 }
