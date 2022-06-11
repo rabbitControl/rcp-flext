@@ -1,12 +1,12 @@
-#N canvas 117 108 468 392 12;
+#N canvas 66 58 468 392 12;
 #X obj 75 302 rcp.debug;
 #X msg 91 170 version;
 #X obj 75 328 print;
-#X obj 75 144 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
+#X obj 75 144 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
 #X msg 111 216 debug \$1;
-#X obj 111 195 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 111 195 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
 #X text 180 216 debug logging;
 #X msg 130 256 memory;
 #X text 102 143 print general information;

@@ -1,4 +1,4 @@
-#N canvas 130 169 458 343 12;
+#N canvas 92 118 458 343 12;
 #X obj 65 168 slipencoder;
 #X msg 65 130 1 2 3 192;
 #X obj 236 186 slipdecoder;
