@@ -1,4 +1,4 @@
-#N canvas 544 203 626 410 12;
+#N canvas 69 75 626 410 12;
 #X declare -lib rcp;
 #X obj 61 242 rcp.server;
 #X msg 61 216 listen 10000;
@@ -9,7 +9,7 @@
 #X obj 283 200 random 100;
 #X msg 283 224 sensor1 \$1;
 #X obj 105 340 > 0;
-#X obj 15 37 declare -lib rcp;
+#X obj 15 30 declare -lib rcp;
 #X obj 137 310 print clients;
 #X obj 105 284 t a a;
 #X text 14 9 RabbitControl for Pd;

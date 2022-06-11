@@ -1,7 +1,7 @@
-#N canvas 825 267 658 449 12;
+#N canvas 70 61 454 449 12;
 #X declare -lib rcp;
 #X obj 79 247 rcp.client;
-#X text 283 215 open connection to rcp server via websocket;
+#X text 91 196 open connection to rcp server via websocket;
 #X msg 79 215 open ws://192.168.7.1:10000;
 #X obj 79 93 loadbang;
 #X obj 111 172 print;
@@ -9,7 +9,7 @@
 #X obj 79 122 t b b;
 #X obj 123 310 print connected;
 #X obj 146 279 print info;
-#X obj 15 37 declare -lib rcp;
+#X obj 15 31 declare -lib rcp;
 #X text 14 9 RabbitControl for Pd;
 #X obj 101 337 print parameter_id;
 #X obj 79 369 print client;

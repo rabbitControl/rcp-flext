@@ -1,0 +1,4 @@
+#N canvas 71 30 573 450 12;
+#X declare -lib rcp;
+#X obj 16 31 declare -lib rcp;
+#X text 14 9 RabbitControl for Pd;
