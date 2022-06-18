@@ -3,7 +3,7 @@
 RabbitControl allows you to control parameters (values) in an easy way.
 
 Expose parameters from Pd/Max and use a rcp client to remotely control your patch.  
-Or use the rcp-client in Pd/Max to control parameters on a remote rcp-server.
+Or use the rcp.client object in Pd/Max to control parameters on a remote rcp server.
 
 #### More information:
 [https://rabbitcontrol.cc](https://rabbitcontrol.cc)  
@@ -19,17 +19,17 @@ Please find and install the external via deken (Find externals...) and load it a
 
 You can find prebuild binaries in [releases](./releases)
 
-Bela-baord users please use: [RabbitControl-pd-1.0.1-linux-armv7l.zip](https://github.com/rabbitControl/rcp-flext/releases/download/v1.0.1/RabbitControl-pd-1.0.1-linux-armv7l.zip)
+Bela-board users please use: [RabbitControl-pd-1.0.4-linux-armv7l.zip](https://github.com/rabbitControl/rcp-flext/releases/download/v1.0.4/RabbitControl-pd-1.0.4-linux-armv7l.zip)
 
 ## Max
 
-Until the package is available in the package-manager RabbitControl is available as a pre-built package available in [releases](./releases)
+Until RabbitControl is available in the package-manager, a pre-built package for Windows and macos can be downloaded from [releases](./releases)
 
 To use the package extract the zip-file to e.g.:  
 `~/Max 8/Packages/`
 
 ###### known issues (Max only):
-- help-patches don't open -> use RabbitControl Overview.maxpat or open the help-patches manually
+- help-patches don't open -> use `RabbitControl Overview.maxpat` or open the help-patches manually.
 
 
 ## Building the external
