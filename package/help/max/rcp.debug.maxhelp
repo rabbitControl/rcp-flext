@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 5,
+			"minor" : 3,
+			"revision" : 1,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 100.0, 640.0, 480.0 ],
+		"rect" : [ 96.0, 115.0, 512.0, 454.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -45,7 +45,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 264.0, 307.0, 242.0, 33.0 ],
+					"patching_rect" : [ 181.0, 295.0, 242.0, 34.0 ],
 					"text" : "print memory allocation count\n(rcp needs to be compiled with specific flag)"
 				}
 
@@ -56,7 +56,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 177.0, 247.0, 84.0, 20.0 ],
+					"patching_rect" : [ 151.0, 198.0, 84.0, 20.0 ],
 					"text" : "debug logging"
 				}
 
@@ -69,7 +69,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 177.0, 269.0, 24.0, 24.0 ]
+					"patching_rect" : [ 151.0, 220.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -79,7 +79,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 123.0, 161.0, 138.0, 20.0 ],
+					"patching_rect" : [ 97.0, 112.0, 138.0, 20.0 ],
 					"text" : "print general information"
 				}
 
@@ -91,7 +91,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 264.0, 342.0, 52.0, 22.0 ],
+					"patching_rect" : [ 181.0, 330.0, 52.0, 22.0 ],
 					"text" : "memory"
 				}
 
@@ -103,7 +103,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 177.0, 298.0, 59.0, 22.0 ],
+					"patching_rect" : [ 151.0, 249.0, 59.0, 22.0 ],
 					"text" : "debug $1"
 				}
 
@@ -115,7 +115,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 127.0, 206.0, 47.0, 22.0 ],
+					"patching_rect" : [ 101.0, 157.0, 47.0, 22.0 ],
 					"text" : "version"
 				}
 
@@ -128,7 +128,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 91.0, 161.0, 24.0, 24.0 ]
+					"patching_rect" : [ 65.0, 112.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -139,7 +139,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 91.0, 415.0, 62.0, 22.0 ],
+					"patching_rect" : [ 65.0, 400.0, 62.0, 22.0 ],
 					"text" : "rcp.debug"
 				}
 
@@ -152,7 +152,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 64.0, 84.0, 96.0, 27.0 ],
+					"patching_rect" : [ 24.0, 14.0, 96.0, 27.0 ],
 					"text" : "rcp.debug"
 				}
 
@@ -164,7 +164,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 18.0, 166.0, 47.0 ],
+					"patching_rect" : [ 315.0, 14.0, 166.0, 48.0 ],
 					"text" : "()()\n oO    RabbitControl for Max\n  x"
 				}
 
@@ -172,11 +172,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-42",
+					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 81.0, 120.0, 374.0, 20.0 ],
-					"text" : "Rabbitcontrol debugging tool, it outputs infromation about rcp objects"
+					"patching_rect" : [ 24.0, 55.0, 259.0, 34.0 ],
+					"text" : "Rabbitcontrol debugging tool.\nIt outputs infromation about rcp and rcp objects"
 				}
 
 			}
@@ -218,8 +219,8 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "rcp.mxo",
-				"type" : "iLaX"
+				"name" : "rcp.client.mxe64",
+				"type" : "mx64"
 			}
  ],
 		"autosave" : 0,

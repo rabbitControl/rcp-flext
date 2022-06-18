@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 5,
+			"minor" : 3,
+			"revision" : 1,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 100.0, 615.0, 798.0 ],
+		"rect" : [ 86.0, 117.0, 678.0, 599.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,44 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-22",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 399.0, 248.0, 224.0, 20.0 ],
+					"presentation_linecount" : 2,
+					"text" : "update command for boolean with label"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-17",
+					"linecount" : 2,
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 399.0, 302.0, 173.0, 36.0 ],
+					"presentation_linecount" : 3,
+					"text" : "4 18 0 3 16 0 32 $1 33 97 110 121 4 116 101 115 116 0 0 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-15",
+					"maxclass" : "toggle",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 399.0, 270.0, 24.0, 24.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"align" : 0,
 					"bgcolor" : [ 0.737254901960784, 0.737254901960784, 0.737254901960784, 1.0 ],
 					"id" : "obj-2",
@@ -48,7 +86,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 121.0, 713.0, 63.0, 26.0 ],
+					"patching_rect" : [ 486.0, 536.0, 63.0, 26.0 ],
 					"rounded" : 8.0,
 					"text" : "rcp.format",
 					"textjustification" : 0,
@@ -64,7 +102,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 208.0, 701.0, 137.0, 22.0 ],
+					"patching_rect" : [ 486.0, 474.0, 137.0, 22.0 ],
 					"text" : "load rcp.format.maxhelp"
 				}
 
@@ -77,7 +115,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 208.0, 728.0, 51.0, 22.0 ],
+					"patching_rect" : [ 486.0, 501.0, 51.0, 22.0 ],
 					"text" : "pcontrol"
 				}
 
@@ -88,7 +126,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 64.0, 716.0, 57.0, 20.0 ],
+					"patching_rect" : [ 429.0, 539.0, 57.0, 20.0 ],
 					"text" : "see also:"
 				}
 
@@ -99,7 +137,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 254.600000000000023, 554.0, 75.0, 22.0 ],
+					"patching_rect" : [ 225.600000000000023, 435.0, 75.0, 22.0 ],
 					"text" : "print remove"
 				}
 
@@ -110,7 +148,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 211.199999999999989, 579.25, 72.0, 22.0 ],
+					"patching_rect" : [ 182.199999999999989, 460.25, 72.0, 22.0 ],
 					"text" : "print update"
 				}
 
@@ -121,7 +159,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 167.800000000000011, 604.5, 80.0, 22.0 ],
+					"patching_rect" : [ 138.800000000000011, 485.5, 80.0, 22.0 ],
 					"text" : "print discover"
 				}
 
@@ -132,7 +170,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 124.400000000000006, 629.75, 51.0, 22.0 ],
+					"patching_rect" : [ 95.400000000000006, 510.75, 51.0, 22.0 ],
 					"text" : "print init"
 				}
 
@@ -143,7 +181,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 81.0, 655.0, 55.0, 22.0 ],
+					"patching_rect" : [ 52.0, 536.0, 55.0, 22.0 ],
 					"text" : "print info"
 				}
 
@@ -154,7 +192,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 243.0, 415.0, 193.0, 20.0 ],
+					"patching_rect" : [ 309.0, 192.0, 193.0, 20.0 ],
 					"text" : "updatevalue command for boolean"
 				}
 
@@ -167,7 +205,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 161.0, 384.0, 24.0, 24.0 ]
+					"patching_rect" : [ 309.0, 217.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -178,7 +216,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 161.0, 415.0, 69.0, 22.0 ],
+					"patching_rect" : [ 309.0, 248.0, 69.0, 22.0 ],
 					"text" : "6 0 2 16 $1"
 				}
 
@@ -189,7 +227,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 242.0, 337.0, 91.0, 20.0 ],
+					"patching_rect" : [ 193.0, 248.0, 69.0, 20.0 ],
 					"text" : "remove id"
 				}
 
@@ -201,7 +239,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 168.0, 337.0, 62.0, 22.0 ],
+					"patching_rect" : [ 119.0, 248.0, 62.0, 22.0 ],
 					"text" : "5 18 0 1 0"
 				}
 
@@ -212,7 +250,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 220.0, 309.0, 91.0, 20.0 ],
+					"patching_rect" : [ 175.0, 220.0, 91.0, 20.0 ],
 					"text" : "discover with id"
 				}
 
@@ -224,7 +262,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 146.0, 309.0, 62.0, 22.0 ],
+					"patching_rect" : [ 101.0, 220.0, 62.0, 22.0 ],
 					"text" : "3 18 0 1 0"
 				}
 
@@ -235,7 +273,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 200.0, 279.0, 107.0, 20.0 ],
+					"patching_rect" : [ 154.0, 192.0, 107.0, 20.0 ],
 					"text" : "initialize with id"
 				}
 
@@ -247,7 +285,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 130.0, 279.0, 62.0, 22.0 ],
+					"patching_rect" : [ 84.0, 192.0, 62.0, 22.0 ],
 					"text" : "2 18 0 1 0"
 				}
 
@@ -258,7 +296,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 130.0, 241.0, 107.0, 20.0 ],
+					"patching_rect" : [ 101.0, 164.0, 107.0, 20.0 ],
 					"text" : "initialize command"
 				}
 
@@ -270,7 +308,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 98.0, 241.0, 29.5, 22.0 ],
+					"patching_rect" : [ 69.0, 164.0, 29.5, 22.0 ],
 					"text" : "2 0"
 				}
 
@@ -281,7 +319,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 113.0, 209.0, 84.0, 20.0 ],
+					"patching_rect" : [ 84.0, 136.0, 84.0, 20.0 ],
 					"text" : "info command"
 				}
 
@@ -293,7 +331,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 81.0, 209.0, 29.5, 22.0 ],
+					"patching_rect" : [ 52.0, 136.0, 29.5, 22.0 ],
 					"text" : "1 0"
 				}
 
@@ -304,7 +342,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 121.0, 487.0, 45.0, 22.0 ],
+					"patching_rect" : [ 92.0, 375.0, 45.0, 22.0 ],
 					"text" : "print id"
 				}
 
@@ -316,7 +354,7 @@
 					"numinlets" : 6,
 					"numoutlets" : 6,
 					"outlettype" : [ "", "", "", "", "", "" ],
-					"patching_rect" : [ 81.0, 521.0, 236.0, 22.0 ],
+					"patching_rect" : [ 52.0, 406.0, 236.0, 22.0 ],
 					"text" : "route info initialize discover update remove"
 				}
 
@@ -328,7 +366,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "int", "" ],
-					"patching_rect" : [ 81.0, 456.0, 59.0, 22.0 ],
+					"patching_rect" : [ 52.0, 346.0, 59.0, 22.0 ],
 					"text" : "rcp.parse"
 				}
 
@@ -342,8 +380,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 341.0, 188.0, 205.0, 62.0 ],
-					"text" : ";\rmax launchbrowser https://github.com/rabbitControl/RCP/blob/master/RCPSpecification.md"
+					"patching_rect" : [ 429.0, 79.0, 205.0, 64.0 ],
+					"text" : ";\r\nmax launchbrowser https://github.com/rabbitControl/RCP/blob/master/RCPSpecification.md"
 				}
 
 			}
@@ -357,7 +395,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 81.0, 155.0, 391.0, 19.0 ],
+					"patching_rect" : [ 23.0, 86.0, 391.0, 19.0 ],
 					"text" : "https://github.com/rabbitControl/RCP/blob/master/RCPSpecification.md",
 					"textjustification" : 0,
 					"textoncolor" : [ 0.113725490196078, 0.36078431372549, 0.847058823529412, 1.0 ]
@@ -372,7 +410,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 64.0, 84.0, 98.0, 27.0 ],
+					"patching_rect" : [ 23.0, 17.0, 98.0, 27.0 ],
 					"text" : "rcp.parse"
 				}
 
@@ -384,7 +422,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 18.0, 166.0, 47.0 ],
+					"patching_rect" : [ 486.0, 17.0, 166.0, 48.0 ],
 					"text" : "()()\n oO    RabbitControl for Max\n  x"
 				}
 
@@ -396,8 +434,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 81.0, 120.0, 374.0, 33.0 ],
-					"text" : "Parses rcp packets from a list of bytes. For more information on rcp packets, please have a look at the RabbitControl specificiation."
+					"patching_rect" : [ 23.0, 51.0, 374.0, 34.0 ],
+					"text" : "Parses rcp packets from a list of bytes. For more information about rcp packets, please have a look at the RabbitControl specificiation:"
 				}
 
 			}
@@ -418,8 +456,22 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-17", 0 ],
+					"source" : [ "obj-15", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
 					"source" : [ "obj-16", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-17", 0 ]
 				}
 
 			}
@@ -526,8 +578,8 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "rcp.mxo",
-				"type" : "iLaX"
+				"name" : "rcp.client.mxe64",
+				"type" : "mx64"
 			}
  ],
 		"autosave" : 0,

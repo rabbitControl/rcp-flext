@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 5,
+			"minor" : 3,
+			"revision" : 1,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 100.0, 459.0, 585.0 ],
+		"rect" : [ 100.0, 100.0, 565.0, 345.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -46,7 +46,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 215.0, 491.499999999999886, 144.0, 22.0 ],
+					"patching_rect" : [ 375.0, 233.999999999999886, 144.0, 22.0 ],
 					"text" : "load slipdecoder.maxhelp"
 				}
 
@@ -61,7 +61,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 117.0, 495.5, 72.0, 25.0 ],
+					"patching_rect" : [ 375.0, 289.0, 72.0, 25.0 ],
 					"rounded" : 8.0,
 					"text" : "slipdecoder",
 					"textjustification" : 0,
@@ -77,7 +77,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 215.0, 516.5, 51.0, 22.0 ],
+					"patching_rect" : [ 375.0, 259.0, 51.0, 22.0 ],
 					"text" : "pcontrol"
 				}
 
@@ -88,8 +88,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 98.0, 362.0, 102.0, 20.0 ],
-					"text" : "ecode slip-packet"
+					"patching_rect" : [ 211.5, 154.0, 136.0, 20.0 ],
+					"text" : "decode the SLIP packet"
 				}
 
 			}
@@ -100,7 +100,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 81.0, 262.0, 29.5, 22.0 ],
+					"patching_rect" : [ 47.0, 186.0, 29.5, 22.0 ],
 					"text" : "t l l"
 				}
 
@@ -111,7 +111,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 81.0, 420.0, 81.0, 22.0 ],
+					"patching_rect" : [ 211.5, 222.0, 81.0, 22.0 ],
 					"text" : "print decoded"
 				}
 
@@ -123,7 +123,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 81.0, 387.0, 70.0, 22.0 ],
+					"patching_rect" : [ 211.5, 186.0, 70.0, 22.0 ],
 					"text" : "slipdecoder"
 				}
 
@@ -134,7 +134,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 58.0, 498.0, 57.0, 20.0 ],
+					"patching_rect" : [ 316.0, 291.5, 57.0, 20.0 ],
 					"text" : "see also:"
 				}
 
@@ -145,8 +145,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 105.0, 303.0, 53.0, 22.0 ],
-					"text" : "print slip"
+					"patching_rect" : [ 57.5, 222.0, 106.0, 22.0 ],
+					"text" : "print slip_encoded"
 				}
 
 			}
@@ -157,7 +157,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 81.0, 219.0, 70.0, 22.0 ],
+					"patching_rect" : [ 47.0, 154.0, 70.0, 22.0 ],
 					"text" : "slipencoder"
 				}
 
@@ -169,7 +169,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 81.0, 172.0, 59.0, 22.0 ],
+					"patching_rect" : [ 47.0, 119.0, 59.0, 22.0 ],
 					"text" : "1 2 3 192"
 				}
 
@@ -182,7 +182,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 64.0, 84.0, 110.0, 27.0 ],
+					"patching_rect" : [ 30.0, 31.0, 110.0, 27.0 ],
 					"text" : "slipencoder"
 				}
 
@@ -194,7 +194,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 18.0, 166.0, 47.0 ],
+					"patching_rect" : [ 375.0, 31.0, 166.0, 48.0 ],
 					"text" : "()()\n oO    RabbitControl for Max\n  x"
 				}
 
@@ -205,8 +205,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 81.0, 120.0, 271.0, 20.0 ],
-					"text" : "Encodes a list of bytes as slip packet (RFC 1055)"
+					"patching_rect" : [ 30.0, 70.0, 283.0, 20.0 ],
+					"text" : "Encodes a list of bytes as SLIP packet (RFC 1055)"
 				}
 
 			}
@@ -264,8 +264,8 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "rcp.mxo",
-				"type" : "iLaX"
+				"name" : "rcp.client.mxe64",
+				"type" : "mx64"
 			}
  ],
 		"autosave" : 0,

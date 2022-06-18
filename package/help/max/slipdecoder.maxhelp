@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 5,
+			"minor" : 3,
+			"revision" : 1,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 100.0, 469.0, 588.0 ],
+		"rect" : [ 104.0, 126.0, 559.0, 285.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,13 +40,36 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-9",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 53.5, 110.0, 150.0, 20.0 ],
+					"text" : "slip packet for: 1 2 3 192"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 53.5, 138.0, 129.0, 22.0 ],
+					"text" : "192 1 2 3 219 220 192"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"hidden" : 1,
 					"id" : "obj-3",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 207.0, 493.333333333333258, 144.0, 22.0 ],
+					"patching_rect" : [ 370.0, 174.833333333333258, 144.0, 22.0 ],
 					"text" : "load slipencoder.maxhelp"
 				}
 
@@ -61,7 +84,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 119.0, 501.5, 72.0, 25.0 ],
+					"patching_rect" : [ 370.0, 235.0, 72.0, 25.0 ],
 					"rounded" : 8.0,
 					"text" : "slipencoder",
 					"textjustification" : 0,
@@ -77,31 +100,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 207.0, 520.0, 51.0, 22.0 ],
+					"patching_rect" : [ 370.0, 201.5, 51.0, 22.0 ],
 					"text" : "pcontrol"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-2",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 98.0, 362.0, 102.0, 20.0 ],
-					"text" : "ecode slip-packet"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-39",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 81.0, 262.0, 29.5, 22.0 ],
-					"text" : "t l l"
 				}
 
 			}
@@ -111,7 +111,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 81.0, 420.0, 81.0, 22.0 ],
+					"patching_rect" : [ 53.5, 235.0, 81.0, 22.0 ],
 					"text" : "print decoded"
 				}
 
@@ -123,43 +123,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 81.0, 387.0, 70.0, 22.0 ],
+					"patching_rect" : [ 53.5, 186.0, 70.0, 22.0 ],
 					"text" : "slipdecoder"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-8",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 105.0, 303.0, 53.0, 22.0 ],
-					"text" : "print slip"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-7",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 81.0, 219.0, 70.0, 22.0 ],
-					"text" : "slipencoder"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-4",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 81.0, 172.0, 59.0, 22.0 ],
-					"text" : "1 2 3 192"
 				}
 
 			}
@@ -169,7 +134,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 60.0, 504.0, 57.0, 20.0 ],
+					"patching_rect" : [ 311.0, 237.5, 57.0, 20.0 ],
 					"text" : "see also:"
 				}
 
@@ -182,7 +147,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 64.0, 84.0, 110.0, 27.0 ],
+					"patching_rect" : [ 33.5, 22.0, 110.0, 27.0 ],
 					"text" : "slipdecoder"
 				}
 
@@ -194,7 +159,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 18.0, 166.0, 47.0 ],
+					"patching_rect" : [ 370.0, 22.0, 166.0, 48.0 ],
 					"text" : "()()\n oO    RabbitControl for Max\n  x"
 				}
 
@@ -205,8 +170,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 81.0, 120.0, 295.0, 20.0 ],
-					"text" : "Decodes a slip-packet from a list of bytes (RFC 1055)"
+					"patching_rect" : [ 33.5, 58.0, 307.0, 20.0 ],
+					"text" : "Decodes a SLIP packet from a list of bytes (RFC 1055)"
 				}
 
 			}
@@ -228,27 +193,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-35", 0 ],
-					"source" : [ "obj-39", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-8", 0 ],
-					"source" : [ "obj-39", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-7", 0 ],
-					"source" : [ "obj-4", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
 					"hidden" : 1,
 					"source" : [ "obj-40", 0 ]
@@ -257,15 +201,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-39", 0 ],
-					"source" : [ "obj-7", 0 ]
+					"destination" : [ "obj-35", 0 ],
+					"source" : [ "obj-5", 0 ]
 				}
 
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "rcp.mxo",
-				"type" : "iLaX"
+				"name" : "rcp.client.mxe64",
+				"type" : "mx64"
 			}
  ],
 		"autosave" : 0,

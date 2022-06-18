@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 5,
+			"minor" : 3,
+			"revision" : 1,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 100.0, 640.0, 709.0 ],
+		"rect" : [ 93.0, 126.0, 643.0, 453.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -48,7 +48,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 118.0, 599.0, 63.0, 26.0 ],
+					"patching_rect" : [ 450.0, 401.0, 63.0, 26.0 ],
 					"rounded" : 8.0,
 					"text" : "sizeprefix",
 					"textjustification" : 0,
@@ -64,7 +64,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 195.0, 592.0, 134.0, 22.0 ],
+					"patching_rect" : [ 450.0, 347.0, 134.0, 22.0 ],
 					"text" : "load sizeprefix.maxhelp"
 				}
 
@@ -77,19 +77,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 195.0, 619.0, 51.0, 22.0 ],
+					"patching_rect" : [ 450.0, 374.0, 51.0, 22.0 ],
 					"text" : "pcontrol"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-34",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 145.5, 479.0, 171.0, 20.0 ],
-					"text" : "- buffer size (int), default: 1024"
 				}
 
 			}
@@ -99,8 +88,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 123.0, 457.0, 154.0, 20.0 ],
-					"text" : "optional creation argument:"
+					"patching_rect" : [ 100.0, 358.0, 289.0, 20.0 ],
+					"text" : "optional creation argument: buffer size, default: 1024"
 				}
 
 			}
@@ -110,7 +99,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 200.0, 404.0, 73.0, 20.0 ],
+					"patching_rect" : [ 189.0, 313.0, 73.0, 20.0 ],
 					"text" : "reset parser"
 				}
 
@@ -122,7 +111,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 160.0, 404.0, 35.0, 22.0 ],
+					"patching_rect" : [ 149.0, 313.0, 35.0, 22.0 ],
 					"text" : "reset"
 				}
 
@@ -133,7 +122,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 178.5, 337.0, 111.0, 20.0 ],
+					"patching_rect" : [ 160.0, 268.0, 111.0, 20.0 ],
 					"text" : "3. send more bytes"
 				}
 
@@ -144,7 +133,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 171.5, 304.0, 97.0, 20.0 ],
+					"patching_rect" : [ 160.0, 235.0, 97.0, 20.0 ],
 					"text" : "2. send first byte"
 				}
 
@@ -155,7 +144,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 174.0, 272.0, 139.0, 20.0 ],
+					"patching_rect" : [ 160.0, 203.0, 139.0, 20.0 ],
 					"text" : "1. (chunked) packet size"
 				}
 
@@ -167,7 +156,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 145.5, 337.0, 29.5, 22.0 ],
+					"patching_rect" : [ 117.5, 268.0, 29.5, 22.0 ],
 					"text" : "2 3"
 				}
 
@@ -179,7 +168,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 140.5, 304.0, 29.5, 22.0 ],
+					"patching_rect" : [ 117.5, 235.0, 29.5, 22.0 ],
 					"text" : "1"
 				}
 
@@ -191,7 +180,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 118.0, 272.0, 52.0, 22.0 ],
+					"patching_rect" : [ 95.0, 203.0, 52.0, 22.0 ],
 					"text" : "0, 0, 0 3"
 				}
 
@@ -202,7 +191,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 167.0, 222.0, 171.0, 20.0 ],
+					"patching_rect" : [ 144.0, 172.0, 171.0, 20.0 ],
 					"text" : "a list with packet size and data"
 				}
 
@@ -213,7 +202,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 60.0, 602.0, 57.0, 20.0 ],
+					"patching_rect" : [ 392.0, 404.0, 57.0, 20.0 ],
 					"text" : "see also:"
 				}
 
@@ -224,7 +213,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 81.0, 522.0, 71.0, 22.0 ],
+					"patching_rect" : [ 58.0, 401.0, 71.0, 22.0 ],
 					"text" : "print packet"
 				}
 
@@ -236,7 +225,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 81.0, 456.0, 35.0, 22.0 ],
+					"patching_rect" : [ 58.0, 357.0, 35.0, 22.0 ],
 					"text" : "sppp"
 				}
 
@@ -248,7 +237,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 81.0, 222.0, 75.0, 22.0 ],
+					"patching_rect" : [ 58.0, 172.0, 75.0, 22.0 ],
 					"text" : "0 0 0 3 1 2 3"
 				}
 
@@ -259,8 +248,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 81.0, 176.0, 255.0, 20.0 ],
-					"text" : "This is useful for unframed data e.g. using tcp."
+					"patching_rect" : [ 27.0, 133.0, 263.0, 20.0 ],
+					"text" : "This is useful for unframed data e.g. using TCP."
 				}
 
 			}
@@ -272,7 +261,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 64.0, 84.0, 51.0, 27.0 ],
+					"patching_rect" : [ 27.0, 26.0, 51.0, 27.0 ],
 					"text" : "sppp"
 				}
 
@@ -284,7 +273,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 18.0, 166.0, 47.0 ],
+					"patching_rect" : [ 450.0, 26.0, 166.0, 48.0 ],
 					"text" : "()()\n oO    RabbitControl for Max\n  x"
 				}
 
@@ -292,12 +281,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-42",
-					"linecount" : 3,
+					"linecount" : 4,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 81.0, 120.0, 374.0, 47.0 ],
-					"text" : "size-prefixed-packet-parser.\nFirst 4 bytes (big endian) define the length of a packet. All following bytes are collected and output once all data-bytes are received."
+					"patching_rect" : [ 27.0, 61.0, 396.0, 62.0 ],
+					"text" : "size-prefixed-packet-parser\n\nThe first 4 bytes (big endian) define the length of the packet. All following bytes are collected and output once all bytes are received."
 				}
 
 			}
@@ -362,8 +351,8 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "rcp.mxo",
-				"type" : "iLaX"
+				"name" : "rcp.client.mxe64",
+				"type" : "mx64"
 			}
  ],
 		"autosave" : 0,
