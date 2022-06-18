@@ -10,7 +10,7 @@ Or use the rcp.client object in Pd/Max to control parameters on a remote rcp ser
 [https://github.com/rabbitcontrol/](https://rabbitcontrol.cc)
 
 
-##Pd
+## Pd
 
 Please find and install the external via deken (Find externals...) and load it as library `rcp`.
 
