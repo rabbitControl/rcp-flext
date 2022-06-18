@@ -1,4 +1,4 @@
-#N canvas 66 58 468 392 12;
+#N canvas 66 58 514 392 12;
 #X obj 75 302 rcp.debug;
 #X msg 91 170 version;
 #X obj 75 328 print;
@@ -14,7 +14,7 @@
 #X obj 47 49 rcp.debug;
 #X text 125 48 - debug for rcp;
 #X text 14 9 RabbitControl for Pd;
-#X text 47 75 RabbitControl debugging tool \, it outputs information
+#X text 46 80 RabbitControl debugging tool. It outputs information
 about rcp objects.;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;

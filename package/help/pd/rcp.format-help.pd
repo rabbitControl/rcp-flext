@@ -1,46 +1,46 @@
-#N canvas 69 47 582 679 12;
-#X obj 90 176 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#N canvas 69 47 620 609 12;
+#X obj 74 176 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000 0 1;
-#X floatatom 98 198 5 0 0 0 - - - 0;
-#X msg 279 462 getlabel;
-#X msg 190 462 label test;
-#X obj 82 154 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#X floatatom 82 198 5 0 0 0 - - - 0;
+#X msg 132 307 getlabel;
+#X msg 118 283 label test;
+#X obj 66 154 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000;
-#X msg 106 223 symbol test;
-#X obj 162 566 print args;
-#X msg 132 325 type t;
-#X msg 169 425 gettype;
-#X msg 132 369 type f;
-#X msg 133 347 type i;
-#X msg 132 391 type s;
-#X msg 132 303 type b;
-#X msg 132 277 type ?;
+#X msg 90 223 symbol test;
+#X obj 145 501 print args;
+#X msg 379 278 type t;
+#X msg 402 376 gettype;
+#X msg 379 322 type f;
+#X msg 380 300 type i;
+#X msg 379 344 type s;
+#X msg 379 256 type b;
+#X msg 379 230 type ?;
 #X text 14 9 RabbitControl for Pd;
 #X text 136 49 - rcpformat;
-#X text 45 639 see also:;
-#X text 203 222 string packet;
-#X text 129 254 choose a type;
-#X text 192 302 bang;
-#X text 192 324 toggle (boolean);
-#X text 192 368 type float;
-#X text 192 390 type symbol (string);
-#X text 192 276 auto type (default);
-#X text 437 461 set a label;
-#X msg 364 501 set 2;
-#X msg 353 462 clearlabel;
-#X text 415 502 set id;
-#X text 174 538 optional creation argument: parameter-id default id:
+#X text 398 548 see also:;
+#X text 187 222 string packet;
+#X text 376 207 choose a type;
+#X text 439 255 bang;
+#X text 439 277 toggle (boolean);
+#X text 439 321 type float;
+#X text 439 343 type symbol (string);
+#X text 439 229 auto type (default);
+#X text 115 262 set a label;
+#X msg 257 442 set 2;
+#X msg 145 335 clearlabel;
+#X text 308 443 set id;
+#X text 157 473 optional creation argument: parameter-id default id:
 1;
-#X text 192 346 type integer;
+#X text 439 299 type integer;
 #X obj 47 49 rcp.format;
-#X obj 81 539 rcp.format 3;
-#X obj 123 638 rcp.parse;
+#X obj 64 474 rcp.format 3;
+#X obj 476 547 rcp.parse;
 #X text 45 79 Allows you to format rcp packets independent of a rcp-server.
 This can be handy if working with serial connections or similar.;
-#X text 109 153 a bang-packet;
-#X text 118 175 a boolean-packet;
-#X text 147 197 a float-packet;
-#X obj 81 589 print rcp_packet;
+#X text 93 153 a bang-packet;
+#X text 102 175 a boolean-packet;
+#X text 131 197 a float-packet;
+#X obj 64 524 print rcp_packet;
 #X connect 0 0 31 0;
 #X connect 1 0 31 0;
 #X connect 2 0 31 0;

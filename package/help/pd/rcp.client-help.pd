@@ -1,4 +1,4 @@
-#N canvas 36 43 765 671 12;
+#N canvas 36 43 684 619 12;
 #X obj 67 459 rcp.client;
 #X obj 67 170 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000;
@@ -6,14 +6,9 @@
 #X floatatom 236 276 5 0 0 0 - - - 0;
 #X obj 144 274 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000 0 1;
-#X text 344 556 id <group-label-list> <id>;
-#X text 344 516 min <group-label-list> <min>;
-#X text 344 536 max <group-label-list> <max>;
-#X text 344 576 value <group-label-list> <value>;
-#X text 344 596 type <group-label-list> <type>;
-#X msg 304 393 mybang;
-#X msg 268 357 mysymbol bla;
-#X msg 269 332 mysymbol a\ string\ test\ bla;
+#X msg 283 398 mybang;
+#X msg 247 362 mysymbol bla;
+#X msg 248 337 mysymbol a\ string\ test\ bla;
 #X floatatom 89 529 5 0 0 0 - - - 0;
 #X text 132 528 parameter id;
 #X msg 91 198 open ws://localhost:10000;
@@ -27,40 +22,45 @@
 #X text 14 9 RabbitControl for Pd;
 #X obj 47 49 rcp.client;
 #X text 136 49 - rcp client;
-#X text 45 629 see also:;
-#X obj 123 628 rcp.server;
+#X text 422 549 see also:;
+#X obj 500 548 rcp.server;
 #X text 284 197 connect to a rcp server;
-#X text 47 83 Rabbitcontrol allows you to control values (parameters)
-on a remote system in an easy way. The remote system (rcp-server) exposes
-parameters which are received and controlled by rcp-clients.;
-#N canvas 157 94 380 288 parameter-info 0;
+#N canvas 59 81 737 278 parameter-info 0;
 #X msg 137 108 info mybang;
 #X msg 148 132 readonly mybang;
 #X msg 55 70 info sensor;
 #X text 34 20 get information about parameters;
 #X obj 55 215 s rcp_client;
+#X text 317 169 id <group-label-list> <id>;
+#X text 317 129 min <group-label-list> <min>;
+#X text 317 149 max <group-label-list> <max>;
+#X text 317 189 value <group-label-list> <value>;
+#X text 317 209 type <group-label-list> <type>;
+#X text 317 109 info <group-label-list> <value> <min> <max> <id> <type>
+;
+#X text 301 88 output:;
 #X connect 0 0 4 0;
 #X connect 1 0 4 0;
 #X connect 2 0 4 0;
-#X restore 511 297 pd parameter-info;
-#X text 344 496 info <group-label-list> <value> <min> <max> <id> <type>
-;
-#X text 328 475 output:;
+#X restore 510 294 pd parameter-info;
 #X text 121 249 set values;
-#X obj 470 440 r rcp_client;
+#X obj 52 431 r rcp_client;
 #X obj 67 558 print rcp_client;
-#X connect 0 0 34 0;
-#X connect 0 1 13 0;
-#X connect 0 2 16 0;
-#X connect 0 3 21 0;
+#X text 47 83 RabbitControl allows to control values (parameters) on
+a remote system in an easy way. The remote system (rcp server) exposes
+parameters which are received and controlled by rcp clients.;
+#X connect 0 0 26 0;
+#X connect 0 1 8 0;
+#X connect 0 2 11 0;
+#X connect 0 3 16 0;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
-#X connect 3 0 20 0;
-#X connect 4 0 18 0;
+#X connect 3 0 15 0;
+#X connect 4 0 13 0;
+#X connect 5 0 0 0;
+#X connect 6 0 0 0;
+#X connect 7 0 0 0;
 #X connect 10 0 0 0;
-#X connect 11 0 0 0;
-#X connect 12 0 0 0;
+#X connect 13 0 0 0;
 #X connect 15 0 0 0;
-#X connect 18 0 0 0;
-#X connect 20 0 0 0;
-#X connect 33 0 0 0;
+#X connect 25 0 0 0;

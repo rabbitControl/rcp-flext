@@ -1,18 +1,18 @@
-#N canvas 63 73 529 404 12;
-#X text 47 351 see also:;
+#N canvas 63 73 571 339 12;
+#X text 406 275 see also:;
 #X obj 47 49 sizeprefix;
 #X text 135 48 - sizeprefix;
-#X obj 125 350 sppp;
+#X obj 484 274 sppp;
 #X obj 89 227 sizeprefix;
 #X text 177 226 - sizeprefix;
 #X obj 156 253 print size_prefix;
 #X obj 89 282 print original_list;
 #X msg 89 180 1 2 3;
-#X text 47 125 useful if sending data via e.g. tcp;
 #X text 14 9 RabbitControl for Pd;
 #X text 47 75 Outputs a size prefix of 4 bytes (big endian) at the
 right outlet. the original list is passed through to the left outlet.
 ;
+#X text 47 125 Useful if sending data via e.g. TCP;
 #X connect 4 0 7 0;
 #X connect 4 1 6 0;
 #X connect 8 0 4 0;

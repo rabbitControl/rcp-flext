@@ -1,4 +1,4 @@
-#N canvas 95 96 544 445 12;
+#N canvas 95 96 608 365 12;
 #X msg 153 225 1 2 3 4;
 #X floatatom 199 286 5 0 0 0 - - - 0;
 #X text 239 285 connected clients;
@@ -12,14 +12,14 @@
 #X text 206 190 stop server;
 #X text 240 320 received data;
 #X text 220 226 send binary data to all connected clients;
-#X text 44 392 see also:;
+#X text 436 320 see also:;
 #X obj 97 321 print server-binary;
 #X obj 47 49 ws.server;
 #X obj 97 263 ws.server 10000;
-#X obj 122 391 ws.client;
+#X obj 514 319 ws.client;
 #X text 117 49 - websocket server;
-#X text 49 83 A simple websocket server for binary data independent
-from RabbitControl.;
+#X text 49 83 A websocket server for binary data independent from RabbitControl.
+;
 #X connect 0 0 16 0;
 #X connect 4 0 16 0;
 #X connect 5 0 16 0;
