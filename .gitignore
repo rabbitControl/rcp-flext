@@ -43,5 +43,7 @@ DerivedData
 *.zip
 *.dek*
 **deken**
+**max-package**
+
 # ignore Makefile (rename the one you need)
 Makefile
