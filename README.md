@@ -12,7 +12,7 @@ Or use the rcp.client object in Pd/Max to control parameters on a remote rcp ser
 
 ## Pd
 
-Please find and install the external "RabbitConotrol" via deken (Find externals...) and load it as library `rcp`.
+Please find and install the external "RabbitControl" via deken (Find externals...) and load it as library `rcp`.
 
 
 ## Prebuilt Binaries
