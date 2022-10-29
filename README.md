@@ -21,6 +21,12 @@ You can find prebuild binaries in [releases](./releases)
 
 Bela-board users please use: [RabbitControl-pd-1.0.4-linux-armv7l.zip](https://github.com/rabbitControl/rcp-flext/releases/download/v1.0.4/RabbitControl-pd-1.0.4-linux-armv7l.zip)
 
+### -> RabbitControl on Bela
+
+There are two very useful articles how to get started with RabbitControl on Bela:  
+https://www.kobakant.at/DIY/?p=9732  
+https://www.kobakant.at/DIY/?p=9714
+
 ## Max
 
 Until RabbitControl is available in the package-manager, a pre-built package for Windows and macos can be downloaded from [releases](./releases)
