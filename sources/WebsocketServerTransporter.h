@@ -76,30 +76,10 @@ namespace rcp
         void socketerror(const char* reason) override;
 
     private:
-        rcp_server* m_rcpServer;
-        pd_websocket_server_transporter* m_transporter;
-        IWebsocketServerListener* m_listener;
+        rcp_server* m_rcpServer{nullptr};
+        rcp_server_transporter* m_transporter{nullptr};
+        IWebsocketServerListener* m_listener{nullptr};
     };
-
 }
-
-#ifdef __cplusplus
-extern "C"{
-#endif
-
-
-typedef struct _pd_websocket_server_transporter {
-    rcp_server_transporter transporter;
-	rcp::WebsocketServerTransporter* pdST;
-} pd_websocket_server_transporter;
-
-// server transporter interface
-void pd_websocket_server_transporter_sendToOne(rcp_server_transporter* transporter, char* data, size_t data_size, void* id);
-void pd_websocket_server_transporter_sendToAll(rcp_server_transporter* transporter, char* data, size_t data_size, void* excludeId);
-
-
-#ifdef __cplusplus
-} // extern "C"
-#endif
 
 #endif // WEBSOCKETSERVERTRANSPORTER_H

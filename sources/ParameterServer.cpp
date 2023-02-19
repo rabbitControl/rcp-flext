@@ -107,7 +107,7 @@ namespace rcp
 		{
             AddOutAnything();
             AddInAnything("raw data input", 1);
-            FLEXT_ADDMETHOD(1, data_list);
+            FLEXT_ADDMETHOD(1, raw_data_list);
 
             m_transporter = std::make_shared<PdServerTransporter>(this);
 		}
@@ -153,52 +153,13 @@ namespace rcp
         ToOutInt(2, m_clientCount);
     }
 
-	void ParameterServer::data_list(int argc, t_atom* argv)
-	{
-		if (m_transporter)
+    void ParameterServer::handle_raw_data(char* data, size_t size)
+    {
+        if (m_transporter)
 		{
-            std::vector<char> data(argc);
-			int offset = 0;
-            int value = -1;
-
-			for (int i=0; i<argc; i++)
-			{
-				if (CanbeInt(argv[i]))
-				{
-                    value = GetAInt(argv[i], -1);
-                    if (value < 0 || value > 255)
-                    {
-                        error("invalid data in list");
-                        return;
-                    }
-
-					data[i-offset] = value;
-				}
-				else
-				{
-					offset++;
-				}
-			}
-
-			m_transporter->pushData(data.data(), argc - offset);
+            m_transporter->pushData(data, size);
 		}
-        else
-        {
-            post("no transporter");
-        }
-	}
-
-	void ParameterServer::dataOut(char* data, size_t data_size) const
-	{
-        std::vector<t_atom> atoms(data_size);
-		
-		for (size_t i=0; i<data_size; i++)
-		{
-			SetInt(atoms[i], data[i]);
-		}
-		
-		ToOutList(0, data_size, atoms.data());
-	}
+    }
 
     void ParameterServer::getPort(int& p)
     {

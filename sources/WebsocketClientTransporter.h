@@ -47,7 +47,6 @@ typedef struct _pd_websocket_client_transporter pd_websocket_client_transporter;
 
 namespace rcp
 {
-
     class ParameterClient;
 
     class WebsocketClientTransporter : public IClientTransporter, public websocketClient
@@ -71,29 +70,9 @@ namespace rcp
         void received(const std::string& /*msg*/) override {}
 
     private:
-        pd_websocket_client_transporter* m_transporter;
-        IWebsocketClientListener* m_listener;
+        rcp_client_transporter* m_transporter{nullptr};
+        IWebsocketClientListener* m_listener{nullptr};
     };
-
 }
-
-
-#ifdef __cplusplus
-extern "C"{
-#endif
-
-
-typedef struct _pd_websocket_client_transporter {
-    rcp_client_transporter transporter;
-	rcp::WebsocketClientTransporter* pdST;
-} pd_websocket_client_transporter;
-
-// client transporter interface
-void pd_websocket_client_transporter_send(rcp_client_transporter* transporter, char* data, size_t data_size);
-
-#ifdef __cplusplus
-} // extern "C"
-#endif
-
 
 #endif // WEBSOCKETCLIENTTRANSPORTER_H

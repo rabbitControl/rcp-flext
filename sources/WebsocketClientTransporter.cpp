@@ -40,21 +40,31 @@
 #include <rcp_memory.h>
 #include <rcp_logging.h>
 
+// callbacks
+static void _pd_websocket_client_transporter_send(rcp_client_transporter* transporter, char* data, size_t size)
+{
+	if (transporter &&
+            transporter->user)
+	{
+		((rcp::WebsocketClientTransporter*)transporter->user)->send(data, size);
+	}
+}
+
 namespace rcp
 {
-
     WebsocketClientTransporter::WebsocketClientTransporter(IWebsocketClientListener* listener)
         : websocketClient()
         , m_transporter(nullptr)
         , m_listener(listener)
     {
-        m_transporter = (pd_websocket_client_transporter*)RCP_CALLOC(1, sizeof (pd_websocket_client_transporter));
+        m_transporter = (rcp_client_transporter*)RCP_CALLOC(1, sizeof(rcp_client_transporter));
 
         if (m_transporter)
         {
-            m_transporter->pdST = this;
-            rcp_client_transporter_setup(RCP_TRANSPORTER(m_transporter),
-                                     pd_websocket_client_transporter_send);
+            rcp_client_transporter_setup(m_transporter,
+                                         _pd_websocket_client_transporter_send);
+
+            m_transporter->user = this;
         }
     }
 
@@ -71,12 +81,7 @@ namespace rcp
     // implement IClientTransporter
     rcp_client_transporter* WebsocketClientTransporter::transporter() const
     {
-        if (m_transporter)
-        {
-            return &m_transporter->transporter;
-        }
-
-        return nullptr;
+        return m_transporter;
     }
 
     void WebsocketClientTransporter::open(const std::string& address)
@@ -94,7 +99,7 @@ namespace rcp
     {
         if (m_transporter)
         {
-            rcp_client_transporter_call_connected_cb(RCP_TRANSPORTER(m_transporter));
+            rcp_client_transporter_call_connected_cb(m_transporter);
         }
 
         if (m_listener)
@@ -108,7 +113,7 @@ namespace rcp
         if (m_transporter)
         {
             // NOTE: this re-creates the client manager
-            rcp_client_transporter_call_disconnected_cb(RCP_TRANSPORTER(m_transporter));
+            rcp_client_transporter_call_disconnected_cb(m_transporter);
         }
 
         if (m_listener)
@@ -122,7 +127,7 @@ namespace rcp
         if (m_transporter)
         {
             // NOTE: this re-creates the client manager
-            rcp_client_transporter_call_disconnected_cb(RCP_TRANSPORTER(m_transporter));
+            rcp_client_transporter_call_disconnected_cb(m_transporter);
         }
 
         if (m_listener)
@@ -135,18 +140,8 @@ namespace rcp
     {
         if (m_transporter)
         {
-            rcp_client_transporter_call_recv_cb(RCP_TRANSPORTER(m_transporter), data, size);
+            rcp_client_transporter_call_recv_cb(m_transporter, data, size);
         }
     }
 
 } // namespace rcp
-
-
-//
-void pd_websocket_client_transporter_send(rcp_client_transporter* transporter, char* data, size_t size)
-{
-	if (transporter)
-	{
-		((pd_websocket_client_transporter*)transporter)->pdST->send(data, size);
-	}
-}

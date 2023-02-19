@@ -52,11 +52,11 @@ namespace rcp
         FLEXT_HEADER_S(ParameterClient, flext_base, setup)
 
     public:
-        ParameterClient();
+        ParameterClient(int argc, t_atom *argv);
         ~ParameterClient();
 
         void parameterAdded(rcp_parameter* parameter);
-        void parameterRemoved(rcp_parameter* parameter);        
+        void parameterRemoved(rcp_parameter* parameter);
 
     public:
         // IWebsocketClientListener
@@ -73,16 +73,18 @@ namespace rcp
             FLEXT_CADDMETHOD_(c, 0, "close", m_close);
         }
 
+        void handle_raw_data(char* /*data*/, size_t /*size*/) override;
+
         void m_open(const t_symbol *d);
         void m_close();
 
-    private:        
+    private:
         FLEXT_CALLBACK_S(m_open)
         FLEXT_CALLBACK(m_close)        
 
     private:
-        rcp_client* m_client;
-        IClientTransporter* m_transporter;
+        rcp_client* m_client{nullptr};
+        IClientTransporter* m_transporter{nullptr};
     };
 
 }

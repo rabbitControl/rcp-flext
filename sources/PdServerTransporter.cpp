@@ -42,26 +42,45 @@
 
 #include "ParameterServer.h"
 
+
+static void pd_server_transporter_sendToOne(rcp_server_transporter* transporter, char* data, size_t data_size, void* /*clientId*/)
+{
+    if (transporter &&
+            transporter->user)
+    {
+        ((rcp::PdServerTransporter*)transporter->user)->pdServer()->dataOut(data, data_size);
+    }
+}
+
+static void pd_server_transporter_sendToAll(rcp_server_transporter* transporter, char* data, size_t data_size, void* /*excludeId*/)
+{
+    if (transporter &&
+            transporter->user)
+    {
+        ((rcp::PdServerTransporter*)transporter->user)->pdServer()->dataOut(data, data_size);
+    }
+}
+
 namespace rcp
 {
 
     PdServerTransporter::PdServerTransporter(ParameterServer* pdServer)
         : m_pdServer(pdServer)
     {
-        m_transporter = (pd_server_transporter*)RCP_CALLOC(1, sizeof (pd_server_transporter));
+        m_transporter = (rcp_server_transporter*)RCP_CALLOC(1, sizeof (rcp_server_transporter));
 
         if (m_transporter)
         {
-            m_transporter->pdST = this;
-
-            rcp_server_transporter_setup(RCP_TRANSPORTER(m_transporter),
-                                     pd_server_transporter_sendToOne,
-                                     pd_server_transporter_sendToAll);
+            rcp_server_transporter_setup(m_transporter,
+                                         pd_server_transporter_sendToOne,
+                                         pd_server_transporter_sendToAll);
 
             if (m_pdServer)
             {
-                rcp_server_add_transporter(m_pdServer->server(), RCP_TRANSPORTER(m_transporter));
+                rcp_server_add_transporter(m_pdServer->server(), m_transporter);
             }
+
+            m_transporter->user = this;
         }
     }
 
@@ -71,7 +90,7 @@ namespace rcp
         {
             if (m_pdServer)
             {
-                rcp_server_remove_transporter(m_pdServer->server(), &m_transporter->transporter);
+                rcp_server_remove_transporter(m_pdServer->server(), m_transporter);
             }
 
             RCP_FREE(m_transporter);
@@ -80,12 +99,7 @@ namespace rcp
 
     rcp_server_transporter* PdServerTransporter::transporter() const
     {
-        if (m_transporter)
-        {
-            return &m_transporter->transporter;
-        }
-
-        return nullptr;
+        return m_transporter;
     }
 
     ParameterServer* PdServerTransporter::pdServer() const
@@ -93,44 +107,17 @@ namespace rcp
         return m_pdServer;
     }
 
-    void PdServerTransporter::pushData(char* data, size_t data_size) const
+    void PdServerTransporter::pushData(char* data, size_t size) const
     {
-        pd_server_transporter_push_data(m_transporter, data, data_size);
+        if (m_transporter &&
+                data  &&
+                size > 0)
+        {
+            if (m_transporter->received)
+            {
+                m_transporter->received(m_transporter->server, data, size, NULL);
+            }
+        }
     }
 
 } // namespace rcp
-
-
-
-//
-void pd_server_transporter_push_data(pd_server_transporter* m_transporter, char* data, size_t data_size)
-{
-    if (m_transporter &&
-            data  &&
-            data_size > 0)
-    {
-        if (m_transporter->transporter.received)
-        {
-            m_transporter->transporter.received(m_transporter->transporter.server,
-                                              data,
-                                              data_size,
-                                              NULL);
-        }
-    }
-}
-
-void pd_server_transporter_sendToOne(rcp_server_transporter* transporter, char* data, size_t data_size, void* id)
-{
-    if (transporter)
-    {
-        ((pd_server_transporter*)transporter)->pdST->pdServer()->dataOut(data, data_size);
-    }
-}
-
-void pd_server_transporter_sendToAll(rcp_server_transporter* transporter, char* data, size_t data_size, void* excludeId)
-{
-    if (transporter)
-    {
-        ((pd_server_transporter*)transporter)->pdST->pdServer()->dataOut(data, data_size);
-    }
-}

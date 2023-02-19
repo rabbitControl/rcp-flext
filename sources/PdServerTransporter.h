@@ -42,11 +42,8 @@
 
 #include "IServerTransporter.h"
 
-typedef struct _pd_server_transporter pd_server_transporter;
-
 namespace rcp
 {
-
     class ParameterServer;
 
     class PdServerTransporter : public IServerTransporter
@@ -62,41 +59,15 @@ namespace rcp
         rcp_server_transporter* transporter() const override;
         virtual void bind(uint16_t /*port*/) override {}
         virtual void unbind() override {}
-        virtual void pushData(char* data, size_t data_size) const override;
+        virtual void pushData(char* data, size_t size) const override;
         uint16_t port() const override { return 0; }
         bool isListening() const override { return true; }
 
-
-
     private:
-        ParameterServer* m_pdServer;
-        pd_server_transporter* m_transporter;
+        ParameterServer* m_pdServer{nullptr};
+        rcp_server_transporter* m_transporter{nullptr};
     };
 
 }
-
-
-#ifdef __cplusplus
-extern "C"{
-#endif
-
-
-typedef struct _pd_server_transporter {
-    rcp_server_transporter transporter;
-	rcp::PdServerTransporter* pdST;
-} pd_server_transporter;
-
-
-void pd_server_transporter_push_data(pd_server_transporter* transporter, char* data, size_t data_size);
-
-// server transporter interface
-void pd_server_transporter_sendToOne(rcp_server_transporter* transporter, char* data, size_t data_size, void* id);
-void pd_server_transporter_sendToAll(rcp_server_transporter* transporter, char* data, size_t data_size, void* excludeId);
-
-#ifdef __cplusplus
-} // extern "C"
-#endif
-
-
 
 #endif // PDSERVERTRANSPORTER_H

@@ -241,8 +241,6 @@ namespace rcp
             }
         }
 
-
-
         if (flext::IsString(argv[0]))
         {
             rcp_parameter* param = rcp_manager_find_parameter(m_manager, GetString(argv[0]), NULL);
@@ -762,6 +760,47 @@ namespace rcp
         }
 
         return param;
+    }
+
+
+    void ParameterServerClientBase::dataOut(char* data, size_t size) const
+    {
+        std::vector<t_atom> atoms(size);
+
+		for (size_t i=0; i<size; i++)
+		{
+			SetInt(atoms[i], data[i]);
+		}
+
+		ToOutList(4, size, atoms.data());
+    }
+
+    void ParameterServerClientBase::raw_data_list(int argc, t_atom* argv)
+    {
+        std::vector<char> data(argc);
+        int offset = 0;
+        int value = -1;
+
+        for (int i=0; i<argc; i++)
+        {
+            if (CanbeInt(argv[i]))
+            {
+                value = GetAInt(argv[i], -1);
+                if (value < 0 || value > 255)
+                {
+                    error("invalid data in list");
+                    return;
+                }
+
+                data[i-offset] = value;
+            }
+            else
+            {
+                offset++;
+            }
+        }
+
+        handle_raw_data(data.data(), argc-offset);
     }
 
 }

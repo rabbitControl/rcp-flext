@@ -44,7 +44,7 @@
 #include <rcp_logging.h>
 
 #include "WebsocketClientTransporter.h"
-
+#include "PdClientTransporter.h"
 
 namespace rcp
 {
@@ -88,12 +88,39 @@ namespace rcp
 
 
 
-    ParameterClient::ParameterClient()
+    ParameterClient::ParameterClient(int argc, t_atom *argv)
         : ParameterServerClientBase()
         , m_client(nullptr)
         , m_transporter(nullptr)
     {
-        m_transporter = new WebsocketClientTransporter(this);
+        bool is_raw = false;
+
+        for (int i=0; i<argc; i++)
+        {
+            if (IsString(argv[i]))
+            {
+                if (std::string(GetString(argv[i])) == "-raw")
+                {
+                    is_raw = true;
+                    continue;
+                }
+            }
+        }
+
+
+        if (is_raw)
+        {
+            //
+            AddOutAnything();
+            AddInAnything("raw data input", 1);
+            FLEXT_ADDMETHOD(1, raw_data_list);
+
+            m_transporter = new PdClientTransporter(this);
+        }
+        else
+        {
+            m_transporter = new WebsocketClientTransporter(this);
+        }
 
         if (m_transporter)
         {
@@ -123,6 +150,14 @@ namespace rcp
         {
             delete m_transporter;
             m_transporter = nullptr;
+        }
+    }
+
+    void ParameterClient::handle_raw_data(char* data, size_t size)
+    {
+        if (m_transporter)
+        {
+            m_transporter->pushData(data, size);
         }
     }
 
@@ -282,5 +317,5 @@ namespace rcp
         ToOutInt(2, 0);
     }
 
-    FLEXT_LIB("rcp.client", ParameterClient);
+    FLEXT_LIB_V("rcp.client", ParameterClient);
 }

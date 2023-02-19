@@ -41,6 +41,26 @@
 
 #include "ParameterServer.h"
 
+//
+void _pd_websocket_server_transporter_sendToOne(rcp_server_transporter* transporter, char* data, size_t data_size, void* id)
+{
+	if (transporter &&
+            transporter->user)
+	{
+		((rcp::WebsocketServerTransporter*)transporter->user)->sendToOne(data, data_size, id);
+	}
+}
+
+void _pd_websocket_server_transporter_sendToAll(rcp_server_transporter* transporter, char* data, size_t data_size, void* excludeId)
+{
+	if (transporter &&
+            transporter->user)
+	{
+		((rcp::WebsocketServerTransporter*)transporter->user)->sendToAll(data, data_size, excludeId);
+	}
+}
+
+
 namespace rcp
 {
     WebsocketServerTransporter::WebsocketServerTransporter(rcp_server* server, IWebsocketServerListener* listener)
@@ -49,17 +69,17 @@ namespace rcp
         , m_transporter(nullptr)
         , m_listener(listener)
     {
-        m_transporter = (pd_websocket_server_transporter*)RCP_CALLOC(1, sizeof (pd_websocket_server_transporter));
+        m_transporter = (rcp_server_transporter*)RCP_CALLOC(1, sizeof(rcp_server_transporter));
 
         if (m_transporter)
         {
-            m_transporter->pdST = this;
+            rcp_server_transporter_setup(m_transporter,
+                                         _pd_websocket_server_transporter_sendToOne,
+                                         _pd_websocket_server_transporter_sendToAll);
 
-            rcp_server_transporter_setup(RCP_TRANSPORTER(m_transporter),
-                                     pd_websocket_server_transporter_sendToOne,
-                                     pd_websocket_server_transporter_sendToAll);
+            rcp_server_add_transporter(m_rcpServer, m_transporter);
 
-            rcp_server_add_transporter(m_rcpServer, RCP_TRANSPORTER(m_transporter));
+            m_transporter->user = this;
         }
     }
 
@@ -68,7 +88,7 @@ namespace rcp
         if (m_transporter)
         {
             // remove transporter from rcp_Server
-            rcp_server_remove_transporter(m_rcpServer, RCP_TRANSPORTER(m_transporter));
+            rcp_server_remove_transporter(m_rcpServer, m_transporter);
 
             RCP_FREE(m_transporter);
             m_transporter = nullptr;
@@ -79,12 +99,7 @@ namespace rcp
     // IPdServerTransporter
     rcp_server_transporter* WebsocketServerTransporter::transporter() const
     {
-        if (m_transporter)
-        {
-            return &m_transporter->transporter;
-        }
-
-        return nullptr;
+        return m_transporter;
     }
 
     void WebsocketServerTransporter::bind(uint16_t port)
@@ -131,12 +146,12 @@ namespace rcp
                 data  &&
                 size > 0)
         {
-            if (m_transporter->transporter.received)
+            if (m_transporter->received)
             {
-                m_transporter->transporter.received(m_transporter->transporter.server,
-                                                    data,
-                                                    size,
-                                                    client);
+                m_transporter->received(m_transporter->server,
+                                        data,
+                                        size,
+                                        client);
             }
         }
     }
@@ -192,21 +207,3 @@ namespace rcp
     }
 
 } // namespace rcp
-
-
-//
-void pd_websocket_server_transporter_sendToOne(rcp_server_transporter* transporter, char* data, size_t data_size, void* id)
-{
-	if (transporter)
-	{
-		((pd_websocket_server_transporter*)transporter)->pdST->sendToOne(data, data_size, id);
-	}
-}
-
-void pd_websocket_server_transporter_sendToAll(rcp_server_transporter* transporter, char* data, size_t data_size, void* excludeId)
-{
-	if (transporter)
-	{
-		((pd_websocket_server_transporter*)transporter)->pdST->sendToAll(data, data_size, excludeId);
-	}
-}

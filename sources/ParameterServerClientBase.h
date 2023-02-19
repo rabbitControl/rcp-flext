@@ -57,6 +57,8 @@ namespace rcp
 
         void parameterUpdate(rcp_parameter* parameter);
 
+        void dataOut(char* data, size_t size) const;
+
     protected:
         void m_any(t_symbol* sym, int argc, t_atom* argv);
         void m_list(int argc, t_atom* argv);
@@ -69,6 +71,11 @@ namespace rcp
         void parameterValue(int argc, t_atom* argv);
         void parameterMin(int argc, t_atom* argv);
         void parameterMax(int argc, t_atom* argv);
+
+        void raw_data_list(int argc, t_atom* argv);
+        FLEXT_CALLBACK_V(raw_data_list)
+        virtual void handle_raw_data(char* /*data*/, size_t /*size*/) = 0;
+
 
     protected:
         std::string GetAsString(const t_atom &a);
@@ -92,7 +99,6 @@ namespace rcp
     private:         
         void _outputInfo(rcp_parameter* parameter, int argc, t_atom* argv);
         void _input(rcp_parameter* parameter, int argc, t_atom* argv);
-
     };
 
 }

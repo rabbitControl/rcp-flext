@@ -67,8 +67,6 @@ namespace rcp
 
         rcp_server* server() const { return m_server; }
 
-        void dataOut(char* data, size_t data_size) const;
-
     public:
         // IWebsocketServerListener
         void connected(void* client) override;
@@ -99,7 +97,7 @@ namespace rcp
             FLEXT_CADDMETHOD_(c, 0, "setminmax", parameterSetMinMax);
         }
 
-        void data_list(int argc, t_atom* argv);
+        void handle_raw_data(char* /*data*/, size_t /*size*/) override;
 
         // port
         void getPort(int& p);
@@ -126,7 +124,6 @@ namespace rcp
         void setupValueParameter(rcp_value_parameter* parameter);
 
     private:
-        FLEXT_CALLBACK_V(data_list)
         // port
         FLEXT_CALLGET_I(getPort)
         FLEXT_CALLBACK_I(listen)
@@ -148,7 +145,7 @@ namespace rcp
         FLEXT_CALLBACK_V(parameterSetMinMax)
 
     private:
-        rcp_server* m_server;
+        rcp_server* m_server{nullptr};
         std::shared_ptr<IServerTransporter> m_transporter;
         std::shared_ptr<RabbitHoleServerTransporter> m_rabbitholeTransporter;
 
